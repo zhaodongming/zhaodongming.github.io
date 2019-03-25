@@ -1,0 +1,176 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/angularlogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>启动Angular应用</h1>
+                    <p>by 明 on 2017-09-22 </p>
+                </div>
+                <div class="post-content">
+                    <p>我们打开项目根目录的.angular-cli.json文件，里边有apps的一个数组，里边定义了项目模块的根路径root：src。它直接指向了项目根目录的SRC文件夹，项目一旦启动，Angular-CLI就会监视SRC目录下的所以文件资源。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr1.png"></p><p></p>
+<a id="more"></a>
+<h2 id="启动时加载了哪个页面？启动时加载了那些脚本？"><a href="#启动时加载了哪个页面？启动时加载了那些脚本？" class="headerlink" title="启动时加载了哪个页面？启动时加载了那些脚本？"></a>启动时加载了哪个页面？启动时加载了那些脚本？</h2><p>.angular-cli.json文件的apps数组还定义了有index属性和main属性，我们在启动Angular项目时主HTML就是index属性对应的index.html，主脚本是main属性对应的main.ts，主样式表是styles属性对应的styles.css。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr2.png"></p><p></p>
+<h2 id="这些脚本做了什么事？"><a href="#这些脚本做了什么事？" class="headerlink" title="这些脚本做了什么事？"></a>这些脚本做了什么事？</h2><h3 id="Main-ts"><a href="#Main-ts" class="headerlink" title="Main.ts"></a>Main.ts</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr3.png"></p><p></p>
+<blockquote>
+<p>① 从Angular核心模块中导入enableProdMode，用于关闭Angular的开发者模式。<br>② 这个方法告诉Angular使用哪个模块启动整个应用。<br>③ 导入主模块<br>④ 导入环境配置<br>⑤ 判断当前是一个生产环境，就调用enableProdMode关闭开发者模式。<br>⑥ 调用.bootstrapModule方法，传入AppModule作为启动模块，来启动应用（这是整个程序的起点）。</p>
+</blockquote>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr4.png"></p><p></p>
+<h3 id="app-module-ts"><a href="#app-module-ts" class="headerlink" title="app.module.ts"></a>app.module.ts</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr5.png"></p><p></p>
+<p>加载app.module.ts时会加载依赖的模块imports属性里的模块。加载完成后并且会分析依赖模块所依赖的包。直到加载完所有所需要的依赖。</p>
+<p>加载完成后Angular会在index.html中，寻找启动模块指定的主组件对应的css选择器。也就是app.module中bootstrap:主组件对应的css选择器（app.component.ts中的selector:’app-root’）。使用templateURL中的内容替换app-root标签中的内容。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr6.png"></p><p></p>
+<h2 id="启动Angular应用"><a href="#启动Angular应用" class="headerlink" title="启动Angular应用"></a>启动Angular应用</h2><h3 id="添加npm的脚本命令"><a href="#添加npm的脚本命令" class="headerlink" title="添加npm的脚本命令"></a>添加npm的脚本命令</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr7.png"></p><p></p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr8.png"></p><p></p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr9.png"></p><p></p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr10.png"></p><p></p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/启动Angualr11.png"></p><p></p>
+
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "启动Angular应用"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#启动时加载了哪个页面？启动时加载了那些脚本？"><span class="toc-number">1.</span> <span class="toc-text">启动时加载了哪个页面？启动时加载了那些脚本？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#这些脚本做了什么事？"><span class="toc-number">2.</span> <span class="toc-text">这些脚本做了什么事？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Main-ts"><span class="toc-number">2.1.</span> <span class="toc-text">Main.ts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#app-module-ts"><span class="toc-number">2.2.</span> <span class="toc-text">app.module.ts</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动Angular应用"><span class="toc-number">3.</span> <span class="toc-text">启动Angular应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加npm的脚本命令"><span class="toc-number">3.1.</span> <span class="toc-text">添加npm的脚本命令</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

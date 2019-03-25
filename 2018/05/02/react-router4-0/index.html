@@ -1,0 +1,229 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="/images/jslogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>react-router4.0+</h1>
+                    <p>by 明 on 2018-05-02 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="使用版本"><a href="#使用版本" class="headerlink" title="使用版本"></a>使用版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"react-router"</span>: <span class="string">"^4.2.0"</span>,</span><br><span class="line"><span class="string">"react-router-dom"</span>: <span class="string">"^4.2.2"</span>,</span><br></pre></td></tr></table></figure>
+<p>国内现在很多的教程都是使用的是老版本的react-router，随着生态圈的壮大，react-router包也越来越大，而客户端浏览器使用的react-router的功能有非常少，所以将react-router中浏览器使用到的react-router-dom从中分离了出来。我们在开发时可以只安装react-router-dom。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i react-router react-router-dom --save</span><br></pre></td></tr></table></figure>
+<h2 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建模块</h2><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片2.png" width="450/"></p><p></p>
+<a id="more"></a>
+<h3 id="模块A"><a href="#模块A" class="headerlink" title="模块A"></a>模块A</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123;Component&#125; from <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default class A extends Component&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span>(&lt;h1&gt;我是模块A&lt;/h1&gt;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模块B"><a href="#模块B" class="headerlink" title="模块B"></a>模块B</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123;Component&#125; from <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default class B extends Component&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span>(&lt;h1&gt;我是模块B&lt;/h1&gt;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模块C"><a href="#模块C" class="headerlink" title="模块C"></a>模块C</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123;Component&#125; from <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default class C extends Component&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span>(&lt;h1&gt;我是模块C&lt;/h1&gt;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="配置路由"><a href="#配置路由" class="headerlink" title="配置路由"></a>配置路由</h2><h3 id="Router路由器"><a href="#Router路由器" class="headerlink" title="Router路由器"></a>Router路由器</h3><p>Router是一个容器（其实质就是一个React组件），真正的路由配置是由Route定义的，定义的Route（一个或多个）都必须由Router包裹。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import React from <span class="string">'react'</span>;</span><br><span class="line">import ReactDOM from <span class="string">'react-dom'</span>;</span><br><span class="line">import &#123;BrowserRouter as Router,Route&#125; from <span class="string">'react-router-dom'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Router&gt;&lt;/Router&gt;</span><br><span class="line">    ,document.getElementById(<span class="string">'root'</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="Basename"><a href="#Basename" class="headerlink" title="Basename"></a>Basename</h3><p>用于模拟项目根目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Router basename=<span class="string">'/public'</span>&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;Nav/&gt;</span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">            &lt;Route exact path=<span class="string">'/'</span> component=&#123;A&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">'/b/:name'</span> component=&#123;B&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">'/c'</span> component=&#123;C&#125;/&gt;</span><br><span class="line">            &lt;Redirect from=<span class="string">'/b'</span> to=<span class="string">'/b'</span> push/&gt;</span><br><span class="line">            &lt;Route component=&#123;Err&#125;/&gt;</span><br><span class="line">        &lt;/Switch&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/Router&gt;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片3.png" width="450/"></p><p></p>
+<h3 id="froceRefresh"><a href="#froceRefresh" class="headerlink" title="froceRefresh"></a>froceRefresh</h3><p>当浏览器不支持HTML5的history API时强制刷新页面。</p>
+<h3 id="路由器种类："><a href="#路由器种类：" class="headerlink" title="路由器种类："></a>路由器种类：</h3><p>react-router-dom中包含的路由种类有三种：</p>
+<h4 id="browserRouter"><a href="#browserRouter" class="headerlink" title="browserRouter"></a>browserRouter</h4><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片4.png" width="450/"></p><p></p>
+<h4 id="HashRouter"><a href="#HashRouter" class="headerlink" title="HashRouter"></a>HashRouter</h4><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片5.png" width="450/"></p><p></p>
+<h4 id="MemoryRouter"><a href="#MemoryRouter" class="headerlink" title="MemoryRouter"></a>MemoryRouter</h4><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片6.png" width="450/"></p><p></p>
+<h3 id="Route路由"><a href="#Route路由" class="headerlink" title="Route路由"></a>Route路由</h3><p>定义了URL与Component之间的关系，Route可以是多个。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Router&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;Nav/&gt;</span><br><span class="line">        &lt;Route exact path=<span class="string">'/'</span> component=&#123;A&#125;/&gt;</span><br><span class="line">        &lt;Route path=<span class="string">'/b'</span> component=&#123;B&#125;/&gt;</span><br><span class="line">        &lt;Route path=<span class="string">'/c'</span> component=&#123;C&#125;/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/Router&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>Path：url地址</li>
+<li>Component：url指向到的对应的模块</li>
+<li>Exact：严格匹配，一般情况下，路由会匹配所有能够匹配到的路由组件（比如 ’/c’ 与 ’/’ ），exact会让匹配更加严格，如果是匹配 ’/c ’ 就不能匹配上 ’/’</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Router&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;Nav/&gt;</span><br><span class="line">        &lt;Route path=<span class="string">'/'</span> component=&#123;A&#125;/&gt;</span><br><span class="line">        &lt;Route path=<span class="string">'/b'</span> component=&#123;B&#125;/&gt;</span><br><span class="line">        &lt;Route path=<span class="string">'/c'</span> component=&#123;C&#125;/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/Router&gt;</span><br></pre></td></tr></table></figure>
+<p>当我点击模块B的时候，此时的路由地址是’/b’,由于路由 ’/’ 没有严格模式的限制，’/b’也将’/’匹配到了。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片7.png" width="450/"></p><p></p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import React from <span class="string">'react'</span>;</span><br><span class="line">import ReactDOM from <span class="string">'react-dom'</span>;</span><br><span class="line">import &#123;BrowserRouter as Router,Route&#125; from <span class="string">'react-router-dom'</span>;</span><br><span class="line">import <span class="string">'./index.css'</span>;</span><br><span class="line"></span><br><span class="line">import A from <span class="string">'./component/a'</span>;</span><br><span class="line">import B from <span class="string">'./component/b'</span>;</span><br><span class="line">import C from <span class="string">'./component/c'</span>;</span><br><span class="line">import Nav from <span class="string">'./component/nav'</span>;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;Nav/&gt;</span><br><span class="line">            &lt;Route exact path=<span class="string">'/'</span> component=&#123;A&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">'/b'</span> component=&#123;B&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">'/c'</span> component=&#123;C&#125;/&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">    ,document.getElementById(<span class="string">'root'</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="Prompt"><a href="#Prompt" class="headerlink" title="Prompt"></a>Prompt</h3><p>用户在切换路由时，如果要跳出本模块，用于进行一些提示信息。Prompt有两个属性message与when。Message用返回提示信息，when用于关闭和开启提示信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Prompt when=&#123;<span class="literal">true</span>&#125; message=<span class="string">"您确定您要离开当前页面吗？"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片8.png" width="450/"></p><p></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Prompt when=&#123;<span class="literal">false</span>&#125; message=<span class="string">"您确定您要离开当前页面吗？"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片9.png" width="450/"></p><p></p>
+<h2 id="Switch（开关）"><a href="#Switch（开关）" class="headerlink" title="Switch（开关）"></a>Switch（开关）</h2><p>Route的匹配具有包含性，如下代码：如果现在我们只是需要匹配”/b”,那么Err模块也会被加载到页面当中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">'/b'</span> component=&#123;B&#125;/&gt;</span><br><span class="line">&lt;Route path=<span class="string">'/c'</span> component=&#123;C&#125;/&gt;</span><br><span class="line">&lt;Route component=&#123;Err&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片10.png" width="450/"></p><p></p>
+<p>Switch就是一个分组，switch可以定义多个，他专门为包含的route提供一个路线，如果我们现在只是需要匹配”/b”这个模块，那么只要匹配到”/b”（只要是满足匹配条件的都会停止匹配，如果将Err模块放在最开始，当匹配到Err时也会停止匹配）switch就会关闭匹配路线，不再继续向下匹配。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片11.png" width="450/"></p><p></p>
+<h2 id="Redirect重定向"><a href="#Redirect重定向" class="headerlink" title="Redirect重定向"></a>Redirect重定向</h2><p>当我们进入一个不存在的路由地址，又不想给用户展示空的页面。那么就需要跳转到另一个错误处理或者错误提示亦或者比如首页界面了。Redirect就能帮组我们实现这个功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">    &lt;Route exact path=<span class="string">'/'</span> component=&#123;A&#125;/&gt;</span><br><span class="line">    &lt;Route path=<span class="string">'/b'</span> component=&#123;B&#125;/&gt;</span><br><span class="line">    &lt;Route path=<span class="string">'/c'</span> component=&#123;C&#125;/&gt;</span><br><span class="line">    &lt;Redirect from=<span class="string">'/d'</span> to=<span class="string">'/b'</span> push/&gt;</span><br><span class="line">    &lt;Route component=&#123;Err&#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片12.png" width="450/"></p><p></p>
+<p>现在点击D模块，跳转路由地址“/d”（“/d”未在route中定义），路由重新跳转到了“/b”。</p>
+<h3 id="From"><a href="#From" class="headerlink" title="From"></a>From</h3><p>地址来源：没有在route中定义（一定要是没有在route定义的）的且用户又跳转了的路由地址。</p>
+<h3 id="To"><a href="#To" class="headerlink" title="To"></a>To</h3><p>路由去向：如果跳转了没有定义的路由地址，那么我们需要将这个地址又指向到哪里去。</p>
+<h3 id="Push"><a href="#Push" class="headerlink" title="Push"></a>Push</h3><p>Push是一个布尔值，在rederict组件中添加push属性，我们在跳转到重定向的模块时，浏览器后退按钮无效。</p>
+<h3 id="为什么from一定要未定义的路由地址："><a href="#为什么from一定要未定义的路由地址：" class="headerlink" title="为什么from一定要未定义的路由地址："></a>为什么from一定要未定义的路由地址：</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片13.png" width="450/"></p><p></p>
+<p>如果from是定义好的路由地址，重定向到”/b”之后switch会关闭掉匹配路线，停止向下匹配，也就不会再次进入到Redirect，所以就会导致redirect中的push失效。</p>
+<h2 id="NavLink"><a href="#NavLink" class="headerlink" title="NavLink"></a>NavLink</h2><p>NavLink是Link的升级版，他就相当于普通HTML中的a标记，用于生成一个链接。点击NavLink，跳转到NavLink上定义的url对应的路由组件上。现在官方为了版本迭代所以还能在react-router-dom中继续使用Link。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123;Component&#125; from <span class="string">'react'</span>;</span><br><span class="line">import &#123;NavLink&#125; from <span class="string">'react-router-dom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default class Nav extends Component&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;NavLink exact to=<span class="string">'/'</span>&gt;A模块&lt;/NavLink&gt;</span><br><span class="line">                &lt;NavLink to=<span class="string">'/b'</span>&gt;B模块&lt;/NavLink&gt;</span><br><span class="line">                &lt;NavLink to=<span class="string">'/c'</span>&gt;C模块&lt;/NavLink&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片14.png" width="450/"></p><p></p>
+<h3 id="activeClassName（activeStyle）"><a href="#activeClassName（activeStyle）" class="headerlink" title="activeClassName（activeStyle）"></a>activeClassName（activeStyle）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span>(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;NavLink exact to=<span class="string">'/'</span> activeClassName=<span class="string">'active'</span>&gt;A模块&lt;/NavLink&gt;</span><br><span class="line">            &lt;NavLink to=<span class="string">'/b'</span> activeStyle=&#123;&#123;color:<span class="string">'pink'</span>,border:<span class="string">'1px solid red'</span>&#125;&#125;&gt;B模块&lt;/NavLink&gt;</span><br><span class="line">            &lt;NavLink to=<span class="string">'/c'</span> activeClassName=<span class="string">'active'</span>&gt;C模块&lt;/NavLink&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.active&#123;</span><br><span class="line">    color:pink;</span><br><span class="line">    border:1px solid red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片15.png" width="450/"></p><p></p>
+<p>activeClassName（activeStyle）与className相同，实质上activeClassName就是className的升级版。activeClassName会使用当前NavLink配置的地址（to）自动与浏览器URL进行匹配，如果URL对应成功，activeClassName这个calss就是生效。</p>
+<h2 id="路由传值"><a href="#路由传值" class="headerlink" title="路由传值"></a>路由传值</h2><h3 id="isActive"><a href="#isActive" class="headerlink" title="isActive"></a>isActive</h3><p>isActive属性判断是否激活当前路由，他的值是一个函数，函数默认接收两个参数match和localtion。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> default class Nav extends Component&#123;</span><br><span class="line">    HandlerClick(match,location)&#123;</span><br><span class="line">        console.log(match);</span><br><span class="line">        console.log(location);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;NavLink exact to=<span class="string">'/'</span> activeClassName=<span class="string">'active'</span>&gt;A模块&lt;/NavLink&gt;</span><br><span class="line">                &lt;NavLink isActive=&#123;this.HandlerClick&#125; to=<span class="string">'/b'</span> activeClassName=<span class="string">'active'</span>&gt;B模块&lt;/NavLink&gt;</span><br><span class="line">                &lt;NavLink to=<span class="string">'/c'</span> activeClassName=<span class="string">'active'</span>&gt;C模块&lt;/NavLink&gt;</span><br><span class="line">                &lt;NavLink to=<span class="string">'/d'</span> activeClassName=<span class="string">'active'</span>&gt;D模块&lt;/NavLink&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片16.png" width="450/"></p><p></p>
+<h3 id="Get传值"><a href="#Get传值" class="headerlink" title="Get传值"></a>Get传值</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;NavLink isActive=&#123;this.HandlerClick&#125; to=<span class="string">'/b?name=tom'</span> activeClassName=<span class="string">'active'</span>&gt;B模块&lt;/NavLink&gt;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片17.png" width="450/"></p><p></p>
+<h3 id="Hash传值"><a href="#Hash传值" class="headerlink" title="Hash传值"></a>Hash传值</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;NavLink isActive=&#123;this.HandlerClick&#125; to=<span class="string">'/b#tom'</span> activeClassName=<span class="string">'active'</span>&gt;B模块&lt;/NavLink&gt;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片18.png" width="450/"></p><p></p>
+<p>这样的获取到的参数如果是需要传递到子模块内部，就需要通过porps层层传递到模块内，这样非常麻烦。</p>
+<h3 id="Prop传值"><a href="#Prop传值" class="headerlink" title="Prop传值"></a>Prop传值</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;NavLink isActive=&#123;this.HandlerClick&#125; to=<span class="string">'/b/tom'</span> activeClassName=<span class="string">'active'</span>&gt;B模块&lt;/NavLink&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">    &lt;Route path=<span class="string">'/b/:name'</span> component=&#123;B&#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentWillMount</span></span>()&#123;</span><br><span class="line">    console.log(this.props)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span>(&lt;h1&gt;我是模块&lt;/h1&gt;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片19.png" width="450/"></p><p></p>
+<p>这样就能在子模块内部非常容易的获取到传递的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> default class B extends Component&#123;</span><br><span class="line">    <span class="function"><span class="title">componentWillMount</span></span>()&#123;</span><br><span class="line">        console.log(this.props)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span>(&lt;h1&gt;我是模块 &#123;this.props.match.params.name&#125;&lt;/h1&gt;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片20.png" width="450/"></p><p></p>
+
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "react-router4.0+"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用版本"><span class="toc-number">1.</span> <span class="toc-text">使用版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建模块"><span class="toc-number">3.</span> <span class="toc-text">创建模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模块A"><span class="toc-number">3.1.</span> <span class="toc-text">模块A</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块B"><span class="toc-number">3.2.</span> <span class="toc-text">模块B</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块C"><span class="toc-number">3.3.</span> <span class="toc-text">模块C</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置路由"><span class="toc-number">4.</span> <span class="toc-text">配置路由</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Router路由器"><span class="toc-number">4.1.</span> <span class="toc-text">Router路由器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Basename"><span class="toc-number">4.2.</span> <span class="toc-text">Basename</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#froceRefresh"><span class="toc-number">4.3.</span> <span class="toc-text">froceRefresh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#路由器种类："><span class="toc-number">4.4.</span> <span class="toc-text">路由器种类：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#browserRouter"><span class="toc-number">4.4.1.</span> <span class="toc-text">browserRouter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HashRouter"><span class="toc-number">4.4.2.</span> <span class="toc-text">HashRouter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MemoryRouter"><span class="toc-number">4.4.3.</span> <span class="toc-text">MemoryRouter</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Route路由"><span class="toc-number">4.5.</span> <span class="toc-text">Route路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo"><span class="toc-number">4.6.</span> <span class="toc-text">Demo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Prompt"><span class="toc-number">4.7.</span> <span class="toc-text">Prompt</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Switch（开关）"><span class="toc-number">5.</span> <span class="toc-text">Switch（开关）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redirect重定向"><span class="toc-number">6.</span> <span class="toc-text">Redirect重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#From"><span class="toc-number">6.1.</span> <span class="toc-text">From</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#To"><span class="toc-number">6.2.</span> <span class="toc-text">To</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Push"><span class="toc-number">6.3.</span> <span class="toc-text">Push</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么from一定要未定义的路由地址："><span class="toc-number">6.4.</span> <span class="toc-text">为什么from一定要未定义的路由地址：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NavLink"><span class="toc-number">7.</span> <span class="toc-text">NavLink</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#activeClassName（activeStyle）"><span class="toc-number">7.1.</span> <span class="toc-text">activeClassName（activeStyle）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由传值"><span class="toc-number">8.</span> <span class="toc-text">路由传值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#isActive"><span class="toc-number">8.1.</span> <span class="toc-text">isActive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Get传值"><span class="toc-number">8.2.</span> <span class="toc-text">Get传值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash传值"><span class="toc-number">8.3.</span> <span class="toc-text">Hash传值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Prop传值"><span class="toc-number">8.4.</span> <span class="toc-text">Prop传值</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

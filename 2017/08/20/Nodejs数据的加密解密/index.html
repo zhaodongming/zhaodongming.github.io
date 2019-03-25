@@ -1,0 +1,240 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/nodejslogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>Nodejs数据加密解密</h1>
+                    <p>by 明 on 2017-08-20 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="加密和安全"><a href="#加密和安全" class="headerlink" title="加密和安全"></a>加密和安全</h2><p>计算机在网络通信过程中，需要经常用到数据加密技术以实现如下三个方面的目的：</p>
+<blockquote>
+<p>（1）数据保密<br>使用各种加密算法把数据进行加密，之后才可以进行公开的数据传输而不会被造成数据外泄<br>（2）数据完整性验证<br>加密算法可以对数据进行摘要计算生成验证码，已验证数据在传输过程中是否被修改过；<br>（3）身份认证<br>使用加密算法可以生成数组签名，以实现对特定主机身认证，防止目标主机什么被冒用。</p>
+</blockquote>
+<h2 id="SSL和OpenSSL"><a href="#SSL和OpenSSL" class="headerlink" title="SSL和OpenSSL"></a>SSL和OpenSSL</h2><p>SSL:Secure Socket Layer ,安全套阶层协议，可以在Internet上提供保密性数据传输。Netscape公司在推出第一个Web浏览器的同时，提出了SSL协议标准。其目标是保证两个应用通信的保密性和可靠性，可在服务器和用户端同时支持；目前已经成为Internet上保密通讯的工业标准。</p>
+<a id="more"></a>
+<p>Eric A. Young和Time J. Hudson自1995年开始使用C语言编写名为OpenSSL软件包，这是一个开放源代码的软件包。1998年，OpenSSL项目组开始接管OpenSSL的开发工作；到目前为止，OpenSSL软件包的算法已经非常完善，支持SSL2.0，SSL3.0以及TLS1.0协议。</p>
+<p>OpenSSL整个软件包大概可以分成三个主要的功能部分：</p>
+<blockquote>
+<ul>
+<li>密码算法库</li>
+<li>SSL/TLS协议工具库</li>
+<li>辅助应用程序</li>
+</ul>
+</blockquote>
+<p>其中的密码算法库对如下几个方面的算法进行了实现：</p>
+<blockquote>
+<ul>
+<li>信息摘要</li>
+<li>对称加密</li>
+<li>非对称加密</li>
+<li>密钥证书管理</li>
+</ul>
+</blockquote>
+<h2 id="crypto模块"><a href="#crypto模块" class="headerlink" title="crypto模块"></a>crypto模块</h2><p>Node.js中提供的crypto模块对OpenSSL提供的工具函数进行了进一步的封装，可以很方便的进行消息摘要计算、数据加密和解密、以及数字签名生产及验证。<br>使用crypto.getHashes( )可以查看该模块提供的所有哈希算法（也称为散列算法或消息摘要算法），如sha1、md5等。<br>使用crypto.getCiphers( )可以查看该模块提供的所有的加密算法，如des、blowfish等；</p>
+<h3 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h3><p>哈希算法：也称为散列算法、消息摘要算法，将任意长度的二进制数据映射为较短的固定长度的二进制值，这个小的二进制值称为哈希值。<br>哈希值是一段数据唯一且极其紧凑的数值表示形式。如果散列一段明文而且哪怕只改该段落的一个字母，随后的哈希都将产生不同的值。要找到散列为同一个值得两个不同的输入，在计算上是不可能的，所以数据的哈希值可以检验数据的完整性。一般用于快速查找和加密算法。</p>
+<p>常见的哈希算法有：</p>
+<blockquote>
+<ul>
+<li>sha1</li>
+<li>sha256</li>
+<li>md5</li>
+<li>ripemd160</li>
+</ul>
+</blockquote>
+<h3 id="哈希算法对象"><a href="#哈希算法对象" class="headerlink" title="哈希算法对象"></a>哈希算法对象</h3><p>要进行消息散列，可以使用createHash( )方法创建一个哈希算法对象：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var <span class="built_in">hash</span>=crypto.createHash(algorithm)</span><br><span class="line">//参数为要使用的哈希散列算法名称</span><br></pre></td></tr></table></figure>
+<p>创建hash对象后，可以使用该对象的update( )方法追加要进行散列计算的摘要数据，该方法可以先后追加多次数据。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hash.update(data,[input_encoding])</span><br><span class="line">//data是要进行散列计算的数据，可以是Buffer或String对象</span><br><span class="line">//encoding指定摘要内容所使用的编码格式，如utf8、ascii、binary等</span><br></pre></td></tr></table></figure></p>
+<p>最后使用hash对象的digest( )方法输出最终的散列数据：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hash.digest([encoding])</span><br><span class="line">//encoding为要输出的摘要的编码格式，如hex、binary、base64等</span><br></pre></td></tr></table></figure></p>
+<p>哈希算法示例<br>下面是一个完整使用哈希做算法的示例，把一个指定文件中的数据进行哈希散列，得到唯一的一段消息摘要数据：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const crypto=require(<span class="string">'crypto'</span>);</span><br><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line">var <span class="built_in">hash</span>=crypto.createHash(<span class="string">'md5'</span>);</span><br><span class="line">var input=fs.createReadStream(<span class="string">'index.js'</span>);</span><br><span class="line">input.on(<span class="string">'data'</span>,(data)=&gt;&#123;</span><br><span class="line">    hash.update(data);</span><br><span class="line">&#125;)</span><br><span class="line">input.on(<span class="string">'end'</span>,()=&gt;&#123;</span><br><span class="line">    var result=hash.digest(<span class="string">'hex'</span>);</span><br><span class="line">    console.log(result);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="HMAC算法"><a href="#HMAC算法" class="headerlink" title="HMAC算法"></a>HMAC算法</h3><p>HMAC:Hash-based Message Authentication Code，密钥相关的哈希运算消息认证码，HMAC运算利用哈希算法，一个密钥和一个消息为输入，生成一个消息摘要为输出。</p>
+<p>该算法与哈希算法的不同点在于进行消息散列运算时，添加了一个密钥，以防止对签名完整性的破坏。</p>
+<h3 id="HMAC算法对象"><a href="#HMAC算法对象" class="headerlink" title="HMAC算法对象"></a>HMAC算法对象</h3><p>要进行HMAC算法，可以使用createHmac( )方法创建一个算法对象：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var hmac=crypto.createHmac(algorih,key);</span><br><span class="line">//algorithm为要使用的哈希散列算法名称</span><br><span class="line">//Key为密钥</span><br></pre></td></tr></table></figure>
+<p>创建hmac对象后，可以使用该对象的update( )方法追加要进行散列计算的摘要数据，该方法可以先后追加多次数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hmc.update(data)</span><br><span class="line">//data是要进行散列计算的数据，可以是Buffer或String对象</span><br></pre></td></tr></table></figure>
+<p>最后使用hmc对象的digest( )方法输出的散列数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hmac.digest([encoding])</span><br><span class="line">//encoding为要输出的摘要的编码格式，如hex、binary、base64等</span><br></pre></td></tr></table></figure>
+<p>HMAC算法示例<br>下面是一个完整使用哈希算法的示例，把一个指定文件中的数据进行哈希散列，得到唯一的一段消息摘要数据：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const crypto=require(<span class="string">'crypto'</span>);</span><br><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line">var secret=<span class="string">'my-secret-123'</span></span><br><span class="line">var hmac=crypto.createHmac(<span class="string">'md5'</span>,secret);</span><br><span class="line">var input=fs.createReadStream(<span class="string">'index.js'</span>);</span><br><span class="line">input.on(<span class="string">'data'</span>,(data)=&gt;&#123;</span><br><span class="line">    hash.update(data);</span><br><span class="line">&#125;)</span><br><span class="line">input.on(<span class="string">'end'</span>,()=&gt;&#123;</span><br><span class="line">    var result=hmac.digest(<span class="string">'hex'</span>);</span><br><span class="line">    console.log(result);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="对称加密和非对称加密技术"><a href="#对称加密和非对称加密技术" class="headerlink" title="对称加密和非对称加密技术"></a>对称加密和非对称加密技术</h3><p>对称加密技术：对数据进行加密和解密使用相同的密钥。<br>非对称加密技术：需要成对出现的公钥和私钥；如果用公开密钥对数据加密，只有用对应的私有才能解密；如果用私钥对数据进行加密，只有用对应的公开密钥才能解密。</p>
+<p>Crypto模块提供了四个加密相关类：</p>
+<blockquote>
+<ul>
+<li>Cipher：用于数据加密</li>
+<li>Decipher：用于数据解密</li>
+<li>Sign：使用私钥生成用户签名</li>
+<li>Verify：使用公钥验证用户签名</li>
+</ul>
+</blockquote>
+<h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><p>要进行数据加密，必须创建Cipher类的对象：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var cipher=crypto.createCipher(algorithm,key);</span><br><span class="line">//algorithm为要使用的加密算法，如blowfish、des、seed等</span><br><span class="line">//key为使用的密钥</span><br></pre></td></tr></table></figure></p>
+<p>使用加密对象的update( )方法追加指定要加密的数据；<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cipher.update(data,[input_encoding],[output_encoding])</span><br><span class="line">//data是要进行加密的数据，可以是Buffer或String对象</span><br><span class="line">//input_encoding是输入数据的编码格式</span><br><span class="line">//output_encoding是输出数据的编码格式</span><br></pre></td></tr></table></figure></p>
+<p>使用加密对象的final( )方法返回最终加密后的数据：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cipher.final([encoding])</span><br><span class="line">//encoding为输出的加密数据编码格式，如hex、binary、base64等</span><br></pre></td></tr></table></figure></p>
+<p>对称加密实例<br>下面是一个完整使用密钥进行数据加密的示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const crypto=require(<span class="string">'crypto'</span>);</span><br><span class="line"></span><br><span class="line">var key=<span class="string">'my-secret-key'</span>;</span><br><span class="line">var cipher=crypto.createCipher(<span class="string">'des'</span>,key);</span><br><span class="line"></span><br><span class="line">var result=cipher.update(<span class="string">'一些需要加密的非常重要的数据'</span>,<span class="string">'utf8'</span>,<span class="string">'hex'</span>);</span><br><span class="line">result+=cipher.final(<span class="string">'hex'</span>);</span><br><span class="line">console.log(result);</span><br></pre></td></tr></table></figure></p>
+<p><font color="red"> *cipher对称加密和消息摘要算法的不同点在于cipher对称加密每次追加加密数据都会返回一段输出的加密数据，所以result输出结果需要拼接，追加数据越多，拼接结果越长。</font><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const crypto=require(<span class="string">'crypto'</span>);</span><br><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line">var secret=<span class="string">'my-secret-123'</span>;</span><br><span class="line">var input=fs.createReadStream(<span class="string">'4.js'</span>);</span><br><span class="line">var cipher=crypto.createCipher(<span class="string">'des'</span>,secret);</span><br><span class="line">var result=null;</span><br><span class="line">input.on(<span class="string">'data'</span>,(data)=&gt;&#123;</span><br><span class="line">   result+=cipher.update(data,<span class="string">'UTF-8'</span>,<span class="string">'hex'</span>);</span><br><span class="line">&#125;)</span><br><span class="line">input.on(<span class="string">'end'</span>,()=&gt;&#123;</span><br><span class="line">    result+=cipher.final(<span class="string">'hex'</span>);</span><br><span class="line">    console.log(result);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="对称解密"><a href="#对称解密" class="headerlink" title="对称解密"></a>对称解密</h3><p>要进行数据解密，必须创建Decipher类对象：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var decipher=crypto.createDecipher(algorithm,key);</span><br><span class="line">//algorithm为要使用的解密算法，如blowfish、des、seed等</span><br><span class="line">//key为解密密钥</span><br></pre></td></tr></table></figure></p>
+<p>使用解密对象的update( )方法追加指定要加密的数据：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">decipher.update(data,[input_encoding],[output_encoding])</span><br><span class="line">//data是要进行解密的数据，可以是Buffer或者String对象</span><br></pre></td></tr></table></figure></p>
+<p>使用解密对象的final( )方法返回最终解密后的数据：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">decipher.final([encoding]);</span><br><span class="line">//encoding为要输出的解密数据的编码格式，如utf8、ascii、binary等</span><br></pre></td></tr></table></figure></p>
+<p>对称解密示例<br>下面是一个完整使用密钥加密后数据进行数据解密的示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const crypto=require(<span class="string">'crypto'</span>);</span><br><span class="line">var secret=<span class="string">'my-secret-123'</span>;</span><br><span class="line">var data=<span class="string">'7afc52f67d7b59a611a590aa4067765d430086d567ce0495ff32a706c91781792262ee625f826132'</span></span><br><span class="line">var decipher=crypto.createDecipher(<span class="string">'des'</span>,secret);</span><br><span class="line">var result=decipher.update(data,<span class="string">'hex'</span>,<span class="string">'UTF-8'</span>);</span><br><span class="line">result+=decipher.final(<span class="string">'UTF-8'</span>);</span><br><span class="line">console.log(result);</span><br><span class="line">//输出：一段需要加密的数据ABC123</span><br></pre></td></tr></table></figure></p>
+<h3 id="数组签名（非对称加密）"><a href="#数组签名（非对称加密）" class="headerlink" title="数组签名（非对称加密）"></a>数组签名（非对称加密）</h3><p>数字签名：私钥所有者在将数据发送之前，使用私钥进行加密，称为签名；数据接收者受到加密后的数据，使用公钥对数据进行验证，以确保数据在传输过程中未被篡改。</p>
+<p>进行签名之前，数据所有者必须创建出自己的私钥及对应公钥：</p>
+<p>创建私钥:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl genrsa -out d:/privatekey.pem 1024</span><br></pre></td></tr></table></figure></p>
+<p>生成公钥:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ openssl req -key d:/privatekey.pem -new -x509 -out publickey.pem</span><br></pre></td></tr></table></figure></p>
+<p>openssl工具xampp软件已经集成，打开xampp目录的xampp/apache/bin目录，按住shift右击鼠标，选择在此处打开命令行窗口<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ C:\xampp\apache\bin&gt;</span><br></pre></td></tr></table></figure></p>
+<p>现在我们使用openssl命令，提示‘openssl’不是内部命令，这是因为openssl程序现在缺少一个openssl.cnf配置文件。这个文件保存在apache的conf目录下，自需要配置一下即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ C:\xampp\apache\bin\<span class="built_in">set</span> OPENSSL_CONF=../conf/openssl.cnf</span><br></pre></td></tr></table></figure></p>
+<p>现在配置完毕，可以使用openssl工具了。</p>
+<p>要进行数组签名，必须创建Sign类的对象：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var sign=crypto.createSign(algorithm);</span><br><span class="line">//algorithm为主要使用的签名算法，如RSA-SHA256等</span><br></pre></td></tr></table></figure></p>
+<p>使用签名对象的update( )方法追加指定签名的数据：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sign.update(data);</span><br><span class="line">//data是要进行签名的数据，可以是Buffer或String对象</span><br></pre></td></tr></table></figure></p>
+<p>使用签名对象的sign( )方法返回最终签名后的数据：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sign.sign(private_key,[encoding])</span><br><span class="line">//private_key为签名所用到的私钥</span><br><span class="line">//encoding为输出的签名数据编码格式，如hex、binary、base64等</span><br></pre></td></tr></table></figure></p>
+<p>数字签名示例<br>下面是一个完整使用私钥进行数据签名的示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const crypto=require(<span class="string">'crypto'</span>);</span><br><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line">var data=<span class="string">'需要进行数据签名的数据'</span>;</span><br><span class="line">var sign=crypto.createSign(<span class="string">'RSA-SHA256'</span>);</span><br><span class="line">var privatekey=fs.readFileSync(<span class="string">'privatekey.pem'</span>);</span><br><span class="line">sign.update(data);</span><br><span class="line">var result=sign.sign(privatekey,<span class="string">'hex'</span>);</span><br><span class="line">console.log(result)</span><br></pre></td></tr></table></figure></p>
+<h3 id="签名验证（非对称解密）"><a href="#签名验证（非对称解密）" class="headerlink" title="签名验证（非对称解密）"></a>签名验证（非对称解密）</h3><p>要进行签名的验证，必须创建Verify类的对象：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var verify=crypto.createVerify(algorithm);</span><br><span class="line">//algorithm为要使用的签名验证算法，如RSA-SHA256等</span><br></pre></td></tr></table></figure></p>
+<p>使用签名验证对象的update( )方法追加指定要验证的数据：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">verif.update(data);</span><br><span class="line">//data是进行签名验证的原始数据，可以是Buffer或者String对象</span><br></pre></td></tr></table></figure></p>
+<p>使用签名验证对象的verify( )方法对签名后的数据进行验证：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">verify.verify(publick_key,sign_result,[encoding]);</span><br><span class="line">//publick_key为签名验证所得到的的公钥</span><br><span class="line">//sign_result为签名后的数据</span><br><span class="line">//encoding为签名数据的编码格式，如hex、binary、base64等</span><br></pre></td></tr></table></figure></p>
+<p>签名验证示例<br>下面是一个完整的使用公钥进行数据签名验证的示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const crypto=require(<span class="string">'crypto'</span>);</span><br><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">var data=<span class="string">'需要进行数据签名的数据'</span>;</span><br><span class="line">var signresult=<span class="string">'5d1cc4f169081ea39cf6173f5b36284eb8303af1e46b36c87386e60390c3738cbd82be6f4a9937dc66b5698022cc5bb0272a4dd8d0c565250d0360b988fd1640bac98564cc012755c9e412c7554303ab03ce761a8c57168708064b9022e6a88214d011e60732698dbce0b5e07f607dcf7410bb1ec0940c95a4c914fa91abb5c4'</span></span><br><span class="line">var publickey=fs.readFileSync(<span class="string">'publickkey.pem'</span>);</span><br><span class="line"></span><br><span class="line">var verify=crypto.createVerify(<span class="string">'RSA-SHA256'</span>);</span><br><span class="line">verify.update(data);</span><br><span class="line">var result=verify.verify(publickey,signresult,<span class="string">'hex'</span>);</span><br><span class="line">console.log(result)//返回布尔值</span><br></pre></td></tr></table></figure></p>
+
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "Nodejs数据加密解密"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#加密和安全"><span class="toc-number">1.</span> <span class="toc-text">加密和安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL和OpenSSL"><span class="toc-number">2.</span> <span class="toc-text">SSL和OpenSSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crypto模块"><span class="toc-number">3.</span> <span class="toc-text">crypto模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#哈希算法"><span class="toc-number">3.1.</span> <span class="toc-text">哈希算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#哈希算法对象"><span class="toc-number">3.2.</span> <span class="toc-text">哈希算法对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HMAC算法"><span class="toc-number">3.3.</span> <span class="toc-text">HMAC算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HMAC算法对象"><span class="toc-number">3.4.</span> <span class="toc-text">HMAC算法对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对称加密和非对称加密技术"><span class="toc-number">3.5.</span> <span class="toc-text">对称加密和非对称加密技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对称加密"><span class="toc-number">3.6.</span> <span class="toc-text">对称加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对称解密"><span class="toc-number">3.7.</span> <span class="toc-text">对称解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组签名（非对称加密）"><span class="toc-number">3.8.</span> <span class="toc-text">数组签名（非对称加密）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#签名验证（非对称解密）"><span class="toc-number">3.9.</span> <span class="toc-text">签名验证（非对称解密）</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/reduxlogo1.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>redux</h1>
+                    <p>by 明 on 2018-05-02 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="什么是redux"><a href="#什么是redux" class="headerlink" title="什么是redux"></a>什么是redux</h2><p>Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux是基于Flux的思想，但又避免它的复杂性。 无论您是否使用过它，Redux只需几分钟即可开始使用。<br>如果你的项目没有复杂的交互和数据，就不需要使用redux，只有遇到 React 实在解决不了的问题，你才需要 Redux 。</p>
+<a id="more"></a>
+<h2 id="何时使用redux"><a href="#何时使用redux" class="headerlink" title="何时使用redux"></a>何时使用redux</h2><blockquote>
+<ul>
+<li>多个组件间共享状态</li>
+<li>一个组件的状态需要被别的组件使用</li>
+</ul>
+</blockquote>
+<h2 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h2><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/reduxyuanli.png" width="450/"></p><p></p>
+<blockquote>
+<ul>
+<li>用户打开视图（view），用户的操作会触发页面中的事件（action）</li>
+<li>Reducer是一个纯函数，他会接收当前的state和action，reducer会根据传入的action返回新的state</li>
+<li>Store是作为state的一个集合，包含所有数据，reducer返回新的state的时store也会改变。</li>
+<li>Store的更新会同步到页面视图（view）当中</li>
+</ul>
+</blockquote>
+<h2 id="创建Reducer纯函数"><a href="#创建Reducer纯函数" class="headerlink" title="创建Reducer纯函数"></a>创建Reducer纯函数</h2><p>Reducer是一个纯函数，他会接受两个参数当前state，action，并返回一个新的state。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> default (state=0,action)=&gt;&#123;</span><br><span class="line">    switch (action.type)&#123;</span><br><span class="line">        <span class="keyword">case</span>  <span class="string">'ADD'</span>:</span><br><span class="line">            <span class="built_in">return</span> state+1</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'reduce'</span>:</span><br><span class="line">            <span class="built_in">return</span> state-1;</span><br><span class="line">        default:</span><br><span class="line">            <span class="built_in">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在es6语法当中我们可以直接给state赋一个初始值（state=0），不同的返回值都是更具action的不同。</p>
+<h2 id="生成Store"><a href="#生成Store" class="headerlink" title="生成Store"></a>生成Store</h2><p>通过调用createStore方法生成store，createStore接收reducer纯函数作为参数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;createStore&#125; from <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line">const store=createStore(reducer);</span><br></pre></td></tr></table></figure>
+<h2 id="传递Action"><a href="#传递Action" class="headerlink" title="传递Action"></a>传递Action</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="built_in">type</span>:<span class="string">'ADD'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Action中type属性是必须的，其他属性可以自由设置，reducer就是根据action的type返回的新state。</p>
+<h3 id="将action传递给reducer"><a href="#将action传递给reducer" class="headerlink" title="将action传递给reducer"></a>将action传递给reducer</h3><p>在创建好action后，store有一个dispatch（调度中心）方法将action作为参数传递给reducer。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.dispatch(&#123;<span class="built_in">type</span>:<span class="string">'ADD'</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="传参数给reducer"><a href="#传参数给reducer" class="headerlink" title="传参数给reducer"></a>传参数给reducer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.dispatch(&#123;<span class="built_in">type</span>:<span class="string">'ADD'</span>,count:2&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="获取新State"><a href="#获取新State" class="headerlink" title="获取新State"></a>获取新State</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.getState()</span><br></pre></td></tr></table></figure>
+<h2 id="更新View"><a href="#更新View" class="headerlink" title="更新View"></a>更新View</h2><p>将ReactDOM.render封装成一个render方法。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const render=()=&gt;&#123;</span><br><span class="line">    ReactDOM.render(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;Content state=&#123;store.getState()&#125;/&gt;</span><br><span class="line">            &lt;Btn</span><br><span class="line">                ADDClick=&#123;()=&gt;store.dispatch(&#123;<span class="built_in">type</span>:<span class="string">'ADD'</span>&#125;)&#125;</span><br><span class="line">                ReduceClick=&#123;()=&gt;&#123;store.dispatch(&#123;<span class="built_in">type</span>:<span class="string">'Reduce'</span>&#125;)&#125;&#125;</span><br><span class="line">            /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        ,document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line">render();//首次渲染</span><br><span class="line"></span><br><span class="line">store.subscribe(render);//监听state改变，进行更新</span><br></pre></td></tr></table></figure>
+<p>store.subscribe（）可以监听store的改变，当store改变时，store.Subscribe会自动调用传入的方法（render方法）。</p>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><h3 id="index"><a href="#index" class="headerlink" title="index"></a>index</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import React from <span class="string">'react'</span>;</span><br><span class="line">import ReactDOM from <span class="string">'react-dom'</span>;</span><br><span class="line">import <span class="string">'./index.css'</span>;</span><br><span class="line">import Btn from <span class="string">'./component/btn'</span>;</span><br><span class="line">import Content from <span class="string">'./component/content'</span>;</span><br><span class="line"></span><br><span class="line">import &#123;createStore&#125; from <span class="string">'redux'</span>;</span><br><span class="line">import reducer from <span class="string">'./redux/reducer'</span>;</span><br><span class="line"></span><br><span class="line">const store=createStore(reducer);</span><br><span class="line"></span><br><span class="line">const render=()=&gt;&#123;</span><br><span class="line">    ReactDOM.render(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;Content state=&#123;store.getState()&#125;/&gt;</span><br><span class="line">            &lt;Btn</span><br><span class="line">                ADDClick=&#123;()=&gt;store.dispatch(&#123;<span class="built_in">type</span>:<span class="string">'ADD'</span>,count:2&#125;)&#125;</span><br><span class="line">                ReduceClick=&#123;()=&gt;&#123;store.dispatch(&#123;<span class="built_in">type</span>:<span class="string">'Reduce'</span>,count:2&#125;)&#125;&#125;</span><br><span class="line">            /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        ,document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line">render();</span><br><span class="line">store.subscribe(render);</span><br></pre></td></tr></table></figure>
+<h2 id="Reucer"><a href="#Reucer" class="headerlink" title="Reucer"></a>Reucer</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const reducer=(state=0,action)=&gt;&#123;</span><br><span class="line">    switch (action.type)&#123;</span><br><span class="line">        <span class="keyword">case</span>  <span class="string">'ADD'</span>:</span><br><span class="line">            <span class="built_in">return</span> state+action.count</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'Reduce'</span>:</span><br><span class="line">            <span class="built_in">return</span> state-action.count;</span><br><span class="line">        default:</span><br><span class="line">            <span class="built_in">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">export</span> default reducer;</span><br></pre></td></tr></table></figure>
+<h2 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123;Component&#125; from <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default class Content extends Component&#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &#123;`当前值为：<span class="variable">$&#123;this.props.state&#125;</span>`&#125;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><p>React生态非常完整，react的强大就在于它的生态。项目中常用的中间件都有现成的，我们只需要引用别人写好的包就可以。</p>
+<h3 id="applyMiddlewares"><a href="#applyMiddlewares" class="headerlink" title="applyMiddlewares()"></a>applyMiddlewares()</h3><p>applyMiddlewares将中间件作为一个数组依次执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import logger from <span class="string">'redux-logger'</span>;</span><br><span class="line">import thunk from <span class="string">'redux-thunk'</span>;</span><br><span class="line">applyMiddleware(logger,thunk);</span><br></pre></td></tr></table></figure>
+<h3 id="如何将方法添加到redux工作流程中？"><a href="#如何将方法添加到redux工作流程中？" class="headerlink" title="如何将方法添加到redux工作流程中？"></a>如何将方法添加到redux工作流程中？</h3><p>在创建store的时候将applyMiddlewares函数当作第二个参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const store=createStore(reducer,applyMiddleware(logger,thunk));</span><br></pre></td></tr></table></figure>
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "redux"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是redux"><span class="toc-number">1.</span> <span class="toc-text">什么是redux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#何时使用redux"><span class="toc-number">2.</span> <span class="toc-text">何时使用redux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计思想"><span class="toc-number">3.</span> <span class="toc-text">设计思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建Reducer纯函数"><span class="toc-number">4.</span> <span class="toc-text">创建Reducer纯函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成Store"><span class="toc-number">5.</span> <span class="toc-text">生成Store</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传递Action"><span class="toc-number">6.</span> <span class="toc-text">传递Action</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#将action传递给reducer"><span class="toc-number">6.1.</span> <span class="toc-text">将action传递给reducer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传参数给reducer"><span class="toc-number">6.2.</span> <span class="toc-text">传参数给reducer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取新State"><span class="toc-number">7.</span> <span class="toc-text">获取新State</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新View"><span class="toc-number">8.</span> <span class="toc-text">更新View</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#demo"><span class="toc-number">9.</span> <span class="toc-text">demo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#index"><span class="toc-number">9.1.</span> <span class="toc-text">index</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reucer"><span class="toc-number">10.</span> <span class="toc-text">Reucer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content"><span class="toc-number">11.</span> <span class="toc-text">Content</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中间件"><span class="toc-number">12.</span> <span class="toc-text">中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#applyMiddlewares"><span class="toc-number">12.1.</span> <span class="toc-text">applyMiddlewares()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何将方法添加到redux工作流程中？"><span class="toc-number">12.2.</span> <span class="toc-text">如何将方法添加到redux工作流程中？</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

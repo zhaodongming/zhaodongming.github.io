@@ -1,0 +1,182 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="/images/jslogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>WebWorkers</h1>
+                    <p>by 明 on 2017-09-25 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="Web-Workers概念"><a href="#Web-Workers概念" class="headerlink" title="Web Workers概念"></a>Web Workers概念</h2><p>Web Workers是一种机制，通过它可以使一个脚本运行在与Web应用程序的主线程相互分离的后台线程中运行。这样做的优点是可以在单独的线程中执行繁琐的处理，让主线程运行不被阻塞/减慢。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/workers1.png"></p><p></p>
+<a id="more"></a>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/workers2.png"></p><p></p>
+<font color="#00B050"><br>普通的js是单线程，由于普通js是解释执行，如果js脚本执行报错就会阻塞剩余js脚本的执行，当前以后的js停止执行。<br><br>Web Workers是多线程，即使是js其中一个线程报错，也不会影响其他线程执行。<br></font>
+
+<h2 id="Web-Workers描述"><a href="#Web-Workers描述" class="headerlink" title="Web Workers描述"></a>Web Workers描述</h2><p>一个worker是使用构造函数创建的一个对象（例如,Worker()）, 运行一个命名的 JavaScript文件—这个文件包含了将在 worker 线程中运行的代码，并且 worker在与当前window不同的另一个全局上下文中运行。</p>
+<p>主线程和 worker 线程之间通过这样的方式互相传输信息：两端都使用 postMessage()方法来发送信息, 并且通过onmessage 这个 event handler来接收信息。（传递的信息包含在Message这个事件的数据属性内) 。数据的交互是通过传递副本，而不是直接共享数据。</p>
+<p>一个 worker 可以生成另外的新的 worker，这些 worker 的宿主和它们父页面的宿主相同。</p>
+<p>此外，worker 可以通过 XMLHttpRequest 来访问网络。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/workers3.png"></p><p></p>
+<h2 id="Web-Workers不能使用的API"><a href="#Web-Workers不能使用的API" class="headerlink" title="Web Workers不能使用的API"></a>Web Workers不能使用的API</h2><p>你可以在你的 worker 线程中运行任意的代码，以下情况除外：你不能直接在 worker 线程中<font color="red">操纵 DOM 元素（不能使用DOM API）</font>, 或者使用某些<font color="red">window对象中默认的方法和属性</font>。</p>
+<h2 id="Web-Workers可以使用的API"><a href="#Web-Workers可以使用的API" class="headerlink" title="Web Workers可以使用的API"></a>Web Workers可以使用的API</h2><p>但是 window 对象中很多的方法和属性你是可以使用的，包括 <font color="#00B050">WebSockets，以及诸如 IndexedDB 和 FireFox OS 中独有的 Data Store API 这一类数据存储机制</font>。</p>
+<h2 id="Web-Workers-API接口"><a href="#Web-Workers-API接口" class="headerlink" title="Web Workers API接口"></a>Web Workers API接口</h2><blockquote>
+<p>1 检查浏览器是否支持浏览器<br>2 创建Worker对象<br>    <em>方法
+        </em>postMessage（data）方法 - 传递消息<br>        <em>terminate（方法） - 终止通信
+    </em>事件<br>        *onmessage事件 - 监听Worker</p>
+</blockquote>
+<h3 id="Worker单向通信"><a href="#Worker单向通信" class="headerlink" title="Worker单向通信"></a>Worker单向通信</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/workers4.png"></p><p></p>
+<p>index.html<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line"> &lt;input <span class="built_in">type</span>=<span class="string">"button"</span> value=<span class="string">"开始"</span> id=<span class="string">"start"</span>&gt;</span><br><span class="line"> &lt;input <span class="built_in">type</span>=<span class="string">"button"</span> value=<span class="string">"停止"</span> id=<span class="string">"stop"</span>&gt;</span><br><span class="line"> &lt;br&gt;</span><br><span class="line"> &lt;div id=<span class="string">"show"</span>&gt;&lt;/div&gt;</span><br><span class="line"> &lt;script&gt;</span><br><span class="line">  //定义全局Worker</span><br><span class="line">  var worker;</span><br><span class="line">  //完成需求</span><br><span class="line">  var start=document.getElementById(<span class="string">"start"</span>);</span><br><span class="line">  var show=document.getElementById(<span class="string">'show'</span>);</span><br><span class="line">  start.onclick=<span class="function"><span class="title">function</span></span>()&#123;//操作Worker</span><br><span class="line">   //1.表示当前浏览器是否支持Worker</span><br><span class="line">    <span class="keyword">if</span>(typeof(Worker!=<span class="string">"undefined"</span>))&#123;</span><br><span class="line">       //表示当前浏览器支持Worker</span><br><span class="line">       /*2.创建Worker对象，指定Worker文件</span><br><span class="line">         *相当于已经开始调用Worker文件中的逻辑</span><br><span class="line">       */</span><br><span class="line">      worker=new Worker(<span class="string">"Worker1.min.js"</span>);</span><br><span class="line">      /*</span><br><span class="line">       3.为worker对象绑定onmessage事件</span><br><span class="line">           作用 - 监听Worker文件逻辑执行</span><br><span class="line">           触发 - postMessage（）方法被调用</span><br><span class="line">       */</span><br><span class="line">      worker.onmessage=<span class="keyword">function</span>(event)&#123;</span><br><span class="line">       /*</span><br><span class="line">       *  接收到Worker文件传递的消息</span><br><span class="line">       *  通过绑定事件的处理函数的event对象</span><br><span class="line">       *  事件对象</span><br><span class="line">       *   集成了data属性 - 就是传递回来的消息</span><br><span class="line">       */</span><br><span class="line">       show.innerHTML=event.data;</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     //表示当前浏览器不支持Worker，给出错误提示</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  var stop=document.getElementById(<span class="string">'stop'</span>);</span><br><span class="line">  stop.onclick=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">   //终止Worker通信</span><br><span class="line">   worker.terminate();</span><br><span class="line">  &#125;</span><br><span class="line"> &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>worker01.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* 该文件就是一个文件Worker文件-其实就是JS文件</span><br><span class="line">* 该文件具有一个上下文环境 - Worker对象</span><br><span class="line">* 在Worker文件中，可以直接使用Worker对象的方法和事件</span><br><span class="line">* 完成计数逻辑</span><br><span class="line">* */</span><br><span class="line">var num=0;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">addNum</span></span>()&#123;</span><br><span class="line">    //将计数的值传递回HTML页面</span><br><span class="line">    postMessage(num);</span><br><span class="line">    //累加计数</span><br><span class="line">    num++;</span><br><span class="line">    setTimeout(addNum,1000);</span><br><span class="line">&#125;</span><br><span class="line">addNum();</span><br></pre></td></tr></table></figure>
+<h3 id="Worker双向通信"><a href="#Worker双向通信" class="headerlink" title="Worker双向通信"></a>Worker双向通信</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/workers5.png"></p><p></p>
+<p>index.html<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> id=<span class="string">"data"</span>/&gt;</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> id=<span class="string">"btn"</span> value=<span class="string">"发送"</span>/&gt;</span><br><span class="line">&lt;br/&gt;</span><br><span class="line">&lt;div id=<span class="string">"show"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var btn=document.getElementById(<span class="string">'btn'</span>);</span><br><span class="line">    btn.onclick=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">//        1.获取用户输入的信息</span><br><span class="line">        var data=document.getElementById(<span class="string">"data"</span>).value;</span><br><span class="line">//        2.将信息发送给worker文件</span><br><span class="line">//        a.创建worker对象</span><br><span class="line">       <span class="keyword">if</span>(typeof(Worker!=<span class="string">"undefined"</span>))&#123;</span><br><span class="line">           var worker=new Worker(<span class="string">'01.js'</span>);</span><br><span class="line">//        b.通过worker对象的postMessage()传递消息</span><br><span class="line">           worker.postMessage(data);</span><br><span class="line">           worker.onmessage=<span class="keyword">function</span>(event)&#123;</span><br><span class="line">               var value=event.data;</span><br><span class="line">               var show=document.getElementById(<span class="string">'show'</span>);</span><br><span class="line">               show.innerHTML=<span class="string">"&lt;h3&gt;"</span>+value+<span class="string">"&lt;/h3&gt;"</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>worker.js<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(<span class="string">'message'</span>,<span class="keyword">function</span>(event)&#123;</span><br><span class="line">    var value=event.data;</span><br><span class="line">//    模拟对话</span><br><span class="line">    switch(value)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"i am zhangwuji"</span>:</span><br><span class="line">            postMessage(<span class="string">"hello,i am xiaona."</span>);</span><br><span class="line">            <span class="built_in">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"Hello,xiaona"</span>:</span><br><span class="line">            postMessage(<span class="string">"i am happy"</span>);</span><br><span class="line">         <span class="built_in">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "WebWorkers"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Workers概念"><span class="toc-number">1.</span> <span class="toc-text">Web Workers概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Workers描述"><span class="toc-number">2.</span> <span class="toc-text">Web Workers描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Workers不能使用的API"><span class="toc-number">3.</span> <span class="toc-text">Web Workers不能使用的API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Workers可以使用的API"><span class="toc-number">4.</span> <span class="toc-text">Web Workers可以使用的API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Workers-API接口"><span class="toc-number">5.</span> <span class="toc-text">Web Workers API接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Worker单向通信"><span class="toc-number">5.1.</span> <span class="toc-text">Worker单向通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Worker双向通信"><span class="toc-number">5.2.</span> <span class="toc-text">Worker双向通信</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

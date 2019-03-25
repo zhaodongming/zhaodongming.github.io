@@ -1,0 +1,332 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/nodejslogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1> Nodejs基础</h1>
+                    <p>by 明 on 2017-07-17 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="1-Node概述"><a href="#1-Node概述" class="headerlink" title="1.Node概述"></a>1.Node概述</h2><p>JavaScript是一门运行在浏览器（客户端）中的语言，主要对象包括：ES原生对象（11个）、BOM对象、DOM对象。</p>
+<p>Node.js是运行于服务器的语言，类似于PHP、JSP、ASP.NET，主要对象包括：ES原生对象、1000+多个扩展对象。</p>
+<a id="more"></a>
+<p></p><p style="text-align:center"><img src="http://ziyuan.qikepower.com/%E5%9B%BE%E7%89%871.png"></p><p></p>
+<h3 id="一种语言通吃前后端！走在最前端"><a href="#一种语言通吃前后端！走在最前端" class="headerlink" title="一种语言通吃前后端！走在最前端"></a>一种语言通吃前后端！走在最前端</h3><p></p><p style="text-align:center"><img src="http://ziyuan.qikepower.com/图片2.png"></p><p></p>
+<h3 id="Node体系结构"><a href="#Node体系结构" class="headerlink" title="Node体系结构"></a>Node体系结构</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片3.png" width="450/"></p><p></p>
+<h3 id="Node能做什么"><a href="#Node能做什么" class="headerlink" title="Node能做什么"></a>Node能做什么</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片4.png" width="450/"></p><p></p>
+<h3 id="Node不适合做什么"><a href="#Node不适合做什么" class="headerlink" title="Node不适合做什么"></a>Node不适合做什么</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片5.png" width="450/"></p><p></p>
+<h3 id="Node特点"><a href="#Node特点" class="headerlink" title="Node特点"></a>Node特点</h3><ul>
+<li>简单，避免过度设计；</li>
+<li>单线程逻辑处理；</li>
+<li>非阻塞I/O处理；</li>
+<li>事件驱动编程；</li>
+<li>无锁机制，不会产生死锁；</li>
+<li>支持上万个并发链接；</li>
+</ul>
+<h3 id="Node性能"><a href="#Node性能" class="headerlink" title="Node性能"></a>Node性能</h3><p>Node.js与PHP+Nginx（比Apache性能更高的服务器）组合性能测试对比：（3000并发连接、持续30秒的压力测试下）</p>
+<p>输出“Hello World”响应:</p>
+<blockquote>
+<ul>
+<li>PHP每秒响应请求次数3624，平均每个请求响应为0.39秒；</li>
+<li>Node.js每秒响应请求次数为7677，平均每个请求响应时间为0.13秒；</li>
+</ul>
+</blockquote>
+<p>执行对MySQL的查询操作:</p>
+<blockquote>
+<ul>
+<li>PHP每秒响应请求数为1293，平均每个请求响应时间为0.82秒；</li>
+<li>Node.js每秒响应请求数为2999,平均每个请求响应时间为0.33秒；</li>
+</ul>
+</blockquote>
+<h2 id="Node解释器下载与安装"><a href="#Node解释器下载与安装" class="headerlink" title="Node解释器下载与安装"></a>Node解释器下载与安装</h2><p>下载地址：<a href="https://nodejs.org" target="_blank" rel="noopener">https://nodejs.org</a><br>版本：LTS：Long Term Support（稳定版）</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片6.png" width="450/"></p><p></p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/图片7.png" width="450/"></p><p></p>
+<h2 id="Node-js有两种运行模式"><a href="#Node-js有两种运行模式" class="headerlink" title="Node.js有两种运行模式"></a>Node.js有两种运行模式</h2><p>交互模式：REPL模式，Read Evaluate Print Loop</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ e:/mynode&gt;node</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>一般用于测试，需要输入一行执行一行。</li>
+<li>执行运算，输出执行结果，继续下一次循环…</li>
+<li>交互模式下，node.js自带的模块无需使用require（）引入。</li>
+</ul>
+</blockquote>
+<p>脚本模式：把要执行的所有代码置于一个文本文件中，可以.js后缀，也可以没有<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ e:/mynode&gt;node	x.js</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li>正常项目应用中都使用脚本模式。</li>
+<li>将所有的语句编写在独立的脚本文件中，一次性执行。</li>
+<li>脚本模式下，除了全局对象及其相关成员外，所有其他模块中声明的</li>
+<li>对象和方法必须使用require（）引入。</li>
+</ul>
+</blockquote>
+<p><br><br><br></p>
+<h2 id="2-Node语法"><a href="#2-Node语法" class="headerlink" title="2.Node语法"></a>2.Node语法</h2><h3 id="数据类型："><a href="#数据类型：" class="headerlink" title="数据类型："></a>数据类型：</h3><p>原型类型（Promitive Type）：</p>
+<blockquote>
+<ul>
+<li>String 、number、boolean、null、undefined</li>
+<li>原始类型数据直接赋值即可。</li>
+</ul>
+</blockquote>
+<p>引用类型（Reference Type）：</p>
+<blockquote>
+<ul>
+<li>包含ES原生对象、Node.js对象、用户自定义对象三类；</li>
+<li>引用类型数据一般需要使用new关键字创建。</li>
+</ul>
+</blockquote>
+<h3 id="Template-String模板字符串-ES6新特性"><a href="#Template-String模板字符串-ES6新特性" class="headerlink" title="Template String模板字符串 - ES6新特性"></a>Template String模板字符串 - ES6新特性</h3><p>ES6标准中，可以使用“模板”方式定义字符串：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var user=&#123;</span><br><span class="line">    ename：<span class="string">'tom'</span>,</span><br><span class="line">    age:20</span><br><span class="line">&#125;</span><br><span class="line">var str=`我的名字叫<span class="variable">$&#123;user.ename&#125;</span>,今年岁<span class="variable">$&#123;user.age&#125;</span>！`;</span><br></pre></td></tr></table></figure></p>
+<p>模板字符串中可以使用${ }拼接变量，并执行运算：（可执行js表达式）</p>
+<h3 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h3><p>声明变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var empName1=’Tom’; //局部变量</span><br><span class="line">empName2=’Mary’;    //全局变量</span><br><span class="line">//注意：省略var的全局变量在严格模式下是非法的</span><br></pre></td></tr></table></figure>
+<hr>
+<p>声明常亮 - ES6新特性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line">//注意：严格模式下，修改常量的值是非法的。</span><br></pre></td></tr></table></figure>
+<h3 id="变量的作用域（let）-ES6新特性"><a href="#变量的作用域（let）-ES6新特性" class="headerlink" title="变量的作用域（let） - ES6新特性"></a>变量的作用域（let） - ES6新特性</h3><p>ES6中，变量的作用域分为三种：</p>
+<blockquote>
+<p>1 局部作用域：只能在当前函数内使用<br>2 全局作用域：可以在任意函数内使用—-是全局对象的成员<br>3 块级作用域：只能在当前快内使用—-ES6新特性</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"use strict"</span>;           //快级作用于需要运行在严格模式</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=0;i&lt;10;I++)&#123;</span><br><span class="line">    console.log(i);     //执行正常</span><br><span class="line">&#125;</span><br><span class="line">console.log(i)          //执行错误</span><br></pre></td></tr></table></figure>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><blockquote>
+<ul>
+<li>1.算数运算符:     + - * / % ++ –</li>
+<li>2.比较运算:       &gt; &lt; &gt;= &lt;= == === != !==</li>
+<li>3.逻辑运算符:     &amp;&amp; || ！ &amp; |</li>
+<li>4.位运算:         &amp; | ~ ^ &lt;&lt; &gt;&gt; &gt;&gt;&gt;</li>
+<li>5.赋值运算:       += -= *= /= %=</li>
+<li>6.三目运算:       ？：</li>
+<li>7.特殊运算符:      typeof instanceof void , . [] =&gt;</li>
+</ul>
+</blockquote>
+<h3 id="逻辑结构"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h3><p>循环结构</p>
+<blockquote>
+<ul>
+<li>for</li>
+<li>for…in…</li>
+<li>for…of…   ——ES6新特性</li>
+<li>while</li>
+<li>do…while</li>
+</ul>
+</blockquote>
+<p>选择结构</p>
+<blockquote>
+<ul>
+<li>if…else…</li>
+<li>switch…case</li>
+</ul>
+</blockquote>
+<p>for…in和for…of</p>
+<p>   1.for…in循环可以遍历数组的下标或对象的成员名</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr=[90,80,70];</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i <span class="keyword">in</span> arr)&#123;</span><br><span class="line"> console.log(i)      //将输出0 1 2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>   2.ES6新增的for…of循环可以遍历数组的元素值</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr=[90,80,70];</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">let</span> v <span class="keyword">in</span> arr)&#123;</span><br><span class="line"> console.log(v)      //将输出90 80 70</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>   函数：就是一系列语句的集合，为了实现某种可以重复使用的特定功能。</p>
+<blockquote>
+<ul>
+<li>命名函数：指定了名称的函数对象</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(num1,num2)&#123;</span><br><span class="line">  <span class="built_in">return</span> num1+num2;</span><br><span class="line">&#125;</span><br><span class="line">add(10,20);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>匿名函数：未指定名称的函数对象</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> add(num)&#123;</span><br><span class="line">  arguments.callee(num-1);     //递归调用匿名函数</span><br><span class="line">&#125;</span><br><span class="line">add(10,20);</span><br></pre></td></tr></table></figure>
+<p>自调函数：js中，全局变量会成为全局对象的成员，造成全局对象的污染；很多js工具和框架在设计时，为了避免此问题，常常使用匿名函数</p>
+<p>自调：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(g)&#123;</span><br><span class="line">   var ns=<span class="string">'myNamespace'</span>;</span><br><span class="line">&#125;)(global)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="keyword">function</span>(g)&#123;</span><br><span class="line">   var ns=<span class="string">'myNamespace'</span>;</span><br><span class="line">&#125;)(global)</span><br></pre></td></tr></table></figure>
+<p>箭头函数：ES6中，为了简化匿名回调函数的编写，引入了箭头函数语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setInterval(()=&gt;&#123;</span><br><span class="line">    console.log(<span class="string">'Hello'</span>);</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.readFile(<span class="string">'index.html'</span>,(err,data)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)throw err;</span><br><span class="line">    console.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>闭包（Closure），是ECMAScript中所特有的现象。一个闭包，可以看做    一种特殊的对象，包含若干函数对象，以及这些函数对象执行时必须依赖的    执行上下文对象。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">outer</span></span>()&#123;</span><br><span class="line">    var num=10;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">inner</span></span>()&#123;</span><br><span class="line">        console.log(num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> inner;</span><br><span class="line">&#125;</span><br><span class="line">var fn=outer();</span><br><span class="line">fun();</span><br></pre></td></tr></table></figure>
+<p>闭包引起的错误<br>无论前端JS还是Node.js，闭包使用不当，都可能引起看似奇怪的错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//假设前端页面中有三个button元素</span><br><span class="line">var list=document.querySelectorAll(<span class="string">'button'</span>);</span><br><span class="line"><span class="keyword">for</span>(var i=0;i&lt;list.length;i++)&#123;</span><br><span class="line">    list[i].onclick=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//点击每个按钮，会分别输出什么？</span><br></pre></td></tr></table></figure>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>ECMAScript中提供了多种创建对象的语法：</p>
+<p>1.对象直接量方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var e1=&#123;ename:<span class="string">'tom'</span>,age:20&#125;;</span><br></pre></td></tr></table></figure>
+<p>2.构造函数方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Emp</span></span>()&#123;</span><br><span class="line">    this.ename=ename;</span><br><span class="line">    this.work=<span class="function"><span class="title">function</span></span>()&#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line">var e2=new Emp(<span class="string">'Mary'</span>);</span><br></pre></td></tr></table></figure>
+<p>3.原型继承方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var parent=new Object();</span><br><span class="line">var child=Object.create(parent);</span><br></pre></td></tr></table></figure>
+<p>4.class方式—ES6新特性</p>
+<p>class关键字</p>
+<blockquote>
+<ul>
+<li>ES6借鉴了其他语言中声明对象的方式，正式启用了class关键字，有了“类”的概念。</li>
+<li>Class：类,是一组相似对象的属性和行为的抽象集合。</li>
+<li>Instance：实例，是从属于某个类的一个具体对象。</li>
+</ul>
+</blockquote>
+<p>class对象的继承</p>
+<blockquote>
+<ul>
+<li>继承，是面向对象编程的一个重要概念，使子对象可以继承父对象中声明的成员，从而极大的提高代码的复用性。</li>
+<li>ES6之前的继承都是通过对象的原型（prototype）来实现的：</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var graphic=&#123;bgColor:<span class="string">'red'</span>,borderColor:<span class="string">'black'</span>&#125;</span><br><span class="line">var rect=&#123;width:500,height:300&#125;;</span><br><span class="line"></span><br><span class="line">Object.setPrototypeOf(rect,graphic);        //原型继承</span><br><span class="line">console.log(rect.width);</span><br><span class="line">console.log(rect.height);</span><br><span class="line">console.log(rect.bgColor);                  //继承来的成员</span><br><span class="line">console.log(rect.borderColor);              //继承来的成员</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>ES6中的继承通过使用class配合extends关键字来实现。</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//声明父类</span><br><span class="line">class Emp&#123;</span><br><span class="line">    constructor(ename)&#123;</span><br><span class="line">        this.ename=ename;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">work</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> `ENAME:<span class="variable">$&#123;this.ename&#125;</span>`;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//声明子类</span><br><span class="line">class Programmer extend Emp&#123;</span><br><span class="line">    construcor(ename,skills)&#123;</span><br><span class="line">        super(ename);</span><br><span class="line">        this.skills=skills;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">work</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> super.work()+`SKILLS:<span class="variable">$&#123;this.skills&#125;</span>`;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var p1=new Programmer(<span class="string">'Tom'</span>,<span class="string">'javascript'</span>);</span><br><span class="line">console.log(p1.work());</span><br></pre></td></tr></table></figure>
+<p>class对象的分类</p>
+<blockquote>
+<ul>
+<li>ECMAScript预定义对象:String、Boolean、Number、Date、Array、Math、RegExp、    Function、        Object、Error、EvalError、RangeError、    ReferenceError、SyntaxError、TypeError、URIError等    16个；</li>
+<li>Node.js核心模块定义的对象:Buffer、WriteStream、Socket、ChildProcess等数百个；</li>
+<li>第三方模块定义的对象</li>
+<li>用户自定义的对象</li>
+</ul>
+</blockquote>
+
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: " Nodejs基础"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Node概述"><span class="toc-number">1.</span> <span class="toc-text">1.Node概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一种语言通吃前后端！走在最前端"><span class="toc-number">1.1.</span> <span class="toc-text">一种语言通吃前后端！走在最前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node体系结构"><span class="toc-number">1.2.</span> <span class="toc-text">Node体系结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node能做什么"><span class="toc-number">1.3.</span> <span class="toc-text">Node能做什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node不适合做什么"><span class="toc-number">1.4.</span> <span class="toc-text">Node不适合做什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node特点"><span class="toc-number">1.5.</span> <span class="toc-text">Node特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node性能"><span class="toc-number">1.6.</span> <span class="toc-text">Node性能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node解释器下载与安装"><span class="toc-number">2.</span> <span class="toc-text">Node解释器下载与安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js有两种运行模式"><span class="toc-number">3.</span> <span class="toc-text">Node.js有两种运行模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Node语法"><span class="toc-number">4.</span> <span class="toc-text">2.Node语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型："><span class="toc-number">4.1.</span> <span class="toc-text">数据类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Template-String模板字符串-ES6新特性"><span class="toc-number">4.2.</span> <span class="toc-text">Template String模板字符串 - ES6新特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量和常量"><span class="toc-number">4.3.</span> <span class="toc-text">变量和常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量的作用域（let）-ES6新特性"><span class="toc-number">4.4.</span> <span class="toc-text">变量的作用域（let） - ES6新特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符"><span class="toc-number">4.5.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑结构"><span class="toc-number">4.6.</span> <span class="toc-text">逻辑结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">4.7.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包"><span class="toc-number">4.8.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象"><span class="toc-number">4.9.</span> <span class="toc-text">对象</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/angularlogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>Angular4.0简介</h1>
+                    <p>by 明 on 2017-09-21 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="Angular-VS-AngularJS"><a href="#Angular-VS-AngularJS" class="headerlink" title="Angular VS AngularJS"></a>Angular VS AngularJS</h2><h3 id="AngularJS的优点"><a href="#AngularJS的优点" class="headerlink" title="AngularJS的优点"></a>AngularJS的优点</h3><blockquote>
+<p>1、模板功能非常强大（丰富的angular指令，使angular拥有了双向数据绑定能力）<br>2、比较完善的前端MVC框架（包含了模板、双向数据绑定、路由、模块化、服务、过滤器、依赖注入等）<br>3、引入了Java的一些概念（比如依赖注入、单元测试等）</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="AngularJS的问题"><a href="#AngularJS的问题" class="headerlink" title="AngularJS的问题"></a>AngularJS的问题</h3><blockquote>
+<p>1、性能（双向数据绑定是一把双刃剑、随着组件的增加，项目越来越复杂，双向数据绑定（脏检查，每一次数据变化都会触发脏检查）会带来性能问题）<br>2、路由（ng-view只能有一个，不能嵌套多个视图，虽然有第三方的ui-router但是依然不是很灵活，他还是一个第三方模块，不是框架本身）。<br>3、作用域（angularjs执行环境和浏览器环境隔离开，所有原生事件都不能影响angularjs作用域，比如不能使用原生click事件，必须使用ng-click指令。$scope在Angular中已经去掉了，任何原生事件都能被执行和处理。）<br>4、表单验证（表单验证功能非常薄弱，需要写大量的模板标签。在Angular中使用全新的表单API，尤其是响应式表单，非常方便的进行复杂校验，并显示错误信息。）<br>5、JavaScript语言（JavaScript没有类型系统，面向对象开发能力不足。Angular中使用TypeScript语言开发，他是ES6语言的一个超集，带有完善的类型系统，让我们在编译阶段解决一部分bug，从而使运行时的bug减少。还可以在IDE中获得提示支持，和更快的性能。）<br>6、学习成本（学习成本高，需要学习控制器、指令、作用域、模板、数据绑定、链式函数、过滤器、依赖注入等等）</p>
+</blockquote>
+<h3 id="Angular新特性"><a href="#Angular新特性" class="headerlink" title="Angular新特性"></a>Angular新特性</h3><blockquote>
+<p>1、全新的命令行工具AngularCLI（是Angular官方提供的一个命令行工具，提供了很多方便的功能帮助我们进行开发，比如：搭建项目脚手架、生成新组件的基础代码、作为一个开发服务器进行、调试、编译、构建代码、运行自动化的单元测试等等。）<br>2、服务器端渲染（比如：需要10s才能加载完的单页应用程序，在1s之内呈现在用户面前。其次他可以针对每个单页应用每个视图去做SEO搜索引擎优化。）<br>3、移动和桌面兼容（在AngularJS中就有所体现，在Angular中借助ionic、nativeScript有提高到了新的高度。Angular官方还提供了一个UI库叫Angular Material。）</p>
+</blockquote>
+<h3 id="AngularJS架构"><a href="#AngularJS架构" class="headerlink" title="AngularJS架构"></a>AngularJS架构</h3><p>Angularjs是一个典型的MVC架构</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/angularMVC.png"></p><p></p>
+<h3 id="Angular架构"><a href="#Angular架构" class="headerlink" title="Angular架构"></a>Angular架构</h3><p>在Angular中采用了一个完全不同的架构，在Angular中整个应用就是一个组件树，用户看到的页面就是有几个被激活的组件组成的。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/AngularComponent.png"></p><p></p>
+<h2 id="Angular-VS-React"><a href="#Angular-VS-React" class="headerlink" title="Angular VS React"></a>Angular VS React</h2><h3 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h3><p>React：速度与其他框架相比React采用完全不同的Dom渲染方式，也就是虚拟DOM。由于采用虚拟DOM技术，React只在调用setState的时候会更新DOM，而且还是先更新虚拟DOM，然后和实际的DOM比较，再更新实际的DOM。这个方式与AngularJS比较是更新次数少，每次更新的数据少，导致了他的速度非常快。;<br>Angular：采用和React非常类似的方法，实现了一个新的变更检测算法，在速度上已经和React不相上下。</p>
+<h3 id="Flux架构"><a href="#Flux架构" class="headerlink" title="Flux架构"></a>Flux架构</h3><p>React：Reatc更关注UI的组件化，和数据的单向更新。提出了一个Flux的新概念。而且在React中可以直接使用js的ES6语法，然后通过webPack之类的工具编译成浏览器兼容的ES5。<br>Angular:在AngularJS中是不支持的，但是在Angular中，比如：组件化、单向更新、ES6语法支持都已经实现了。</p>
+<h3 id="服务器渲染"><a href="#服务器渲染" class="headerlink" title="服务器渲染"></a>服务器渲染</h3><p>React：可以在服务器端预渲染应用，在发送给客户端。他可以在预渲染的静态内容中，恢复一样记录到动态应用程序中。<br>Angular：在AngularJS中不支持，Angular已经支持。</p>
+<h2 id="Angular-VS-Vue"><a href="#Angular-VS-Vue" class="headerlink" title="Angular VS Vue"></a>Angular VS Vue</h2><h3 id="简单："><a href="#简单：" class="headerlink" title="简单："></a>简单：</h3><p>Vue：Vue的目标就是通过尽可能简单的API，实现响应的数据绑定，和组合的视图组件。而且Vue是国内大牛开发，文档都是中文的，而且非常完善，所以在学习和使用的难度上都不是很高，很容易上手。</p>
+<h3 id="灵活："><a href="#灵活：" class="headerlink" title="灵活："></a>灵活：</h3><p>Vue:Vue官方提供了一个构建工具，来协助你构建效果，但是并不限制你如何构建<br>Angular：Angular-CLI包办了一切非开发时的工作，比如：编译、构建等。</p>
+<h3 id="性能："><a href="#性能：" class="headerlink" title="性能："></a>性能：</h3><p>Vue：Vue的尺寸非常小，只有10+K，使用了类React虚拟DOM的方式来处理组件，速度很快，性能很好。Vue是一个优秀的前端框架，但是在选择他时，是需要注意和考虑的。<br>Angular：Angular基本的框架就要50+k</p>
+<h3 id="主导："><a href="#主导：" class="headerlink" title="主导："></a>主导：</h3><p>Vue:是个人主导的一个项目，Vue的社区和生态与Angular存在差距。<br>Angular：由Google主导，并且使用的是微软开发的TypeScript语言（团队项目更靠谱）。比如社区和生态环境的区别，Angular在全球范围内拥有庞大的开发者社区和配套的生态环境。</p>
+<h3 id="只关注WEB"><a href="#只关注WEB" class="headerlink" title="只关注WEB"></a>只关注WEB</h3><p>Vue：Vue是只关注WEB的一个框架，<br>Angular：作为框架而言Angular实现了更高层次的抽象，他是一个大的前端的一个平台，他不仅可以开发WEB项目（面向DOM），还可以开发客户端应用（面向IOS、安卓Native的应用，比如：NativeScript）</p>
+<h3 id="服务器端渲染："><a href="#服务器端渲染：" class="headerlink" title="服务器端渲染："></a>服务器端渲染：</h3><p>Vue：Vue目前只能靠第三方的库或服务来实现。<br>Angular：Angular有官方提供的服务器端渲染支持，可以解决Vue这种纯前端框架不能解决的一些痛点。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/angularjicheng.png"></p><p></p>
+
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "Angular4.0简介"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular-VS-AngularJS"><span class="toc-number">1.</span> <span class="toc-text">Angular VS AngularJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS的优点"><span class="toc-number">1.1.</span> <span class="toc-text">AngularJS的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS的问题"><span class="toc-number">1.2.</span> <span class="toc-text">AngularJS的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Angular新特性"><span class="toc-number">1.3.</span> <span class="toc-text">Angular新特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJS架构"><span class="toc-number">1.4.</span> <span class="toc-text">AngularJS架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Angular架构"><span class="toc-number">1.5.</span> <span class="toc-text">Angular架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular-VS-React"><span class="toc-number">2.</span> <span class="toc-text">Angular VS React</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#速度"><span class="toc-number">2.1.</span> <span class="toc-text">速度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flux架构"><span class="toc-number">2.2.</span> <span class="toc-text">Flux架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器渲染"><span class="toc-number">2.3.</span> <span class="toc-text">服务器渲染</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Angular-VS-Vue"><span class="toc-number">3.</span> <span class="toc-text">Angular VS Vue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单："><span class="toc-number">3.1.</span> <span class="toc-text">简单：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#灵活："><span class="toc-number">3.2.</span> <span class="toc-text">灵活：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#性能："><span class="toc-number">3.3.</span> <span class="toc-text">性能：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主导："><span class="toc-number">3.4.</span> <span class="toc-text">主导：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只关注WEB"><span class="toc-number">3.5.</span> <span class="toc-text">只关注WEB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器端渲染："><span class="toc-number">3.6.</span> <span class="toc-text">服务器端渲染：</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

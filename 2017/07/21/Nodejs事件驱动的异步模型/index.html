@@ -1,0 +1,250 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/nodejslogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>Nodejs事件驱动的异步模型+事件和event模块</h1>
+                    <p>by 明 on 2017-07-21 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>进程：process/Task,是程序的动态执行。操作系统将可执行文件从磁盘调入内存，为其分配必要的可执行代码内存和数据内存空间，这一过程就是创建了一个进程—进程是操作系统分配内存的基本单位。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/进程.png"></p><p></p>
+<a id="more"></a>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>线程:Thread，是进程内部执行代码的基本单位。一个进程可以同时创建多个线程，并发的执行多段代码。<br>每个线程需要自己独立的数据内存空间，大小为2MB；所以一台8GB内存的计算机，理论上可以同时存在4000个线程。</p>
+<h2 id="进程与线程的关系"><a href="#进程与线程的关系" class="headerlink" title="进程与线程的关系"></a>进程与线程的关系</h2><blockquote>
+<p>① 进程是操作系统创建任务分配内存的基本单位；<br>② 线程是进程内部执行代码的基本单位；<br>③ 线程处于进程内部；<br>④ 一个进程内部必须至少存在一个线程；<br>⑤ 一个进程内部也可以同时存在多个线程，这些线程间并发执行。</p>
+</blockquote>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/线程.png"></p><p></p>
+<h2 id="单线程服务器"><a href="#单线程服务器" class="headerlink" title="单线程服务器"></a>单线程服务器</h2><p>早期”单线程服务器”中，服务器端只有一个线程，依次为每个客户端请求提供服务，某一时刻只能为一个客户端提供相应。<br>特点：</p>
+<blockquote>
+<p>程序设计简单；<br>运行效率太低；</p>
+</blockquote>
+<h2 id="多线程服务器"><a href="#多线程服务器" class="headerlink" title="多线程服务器"></a>多线程服务器</h2><p>为了同时处理多个客户端的请求，很多服务器应用都设计为多线程运行模式，即每接收到一个客户端连接请求，都会有创建一个专门的服务线程。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/多线程服务器.png"></p><p></p>
+<h3 id="多线程模型的特点"><a href="#多线程模型的特点" class="headerlink" title="多线程模型的特点"></a>多线程模型的特点</h3><p>多线程模型作为当前广泛采用的服务器运行模型，被大量的服务器程序所采用（如Apache Httpd）。对于CPU密集型请求，可以充分利用多核CPU的优势，同时为尽可能多的客户端提供服务。<br>但是，多线程模型也存在下列问题：</p>
+<blockquote>
+<p>（1） 每个线程内部的操作都是线性执行，耗时操作会阻塞后续操作；<br>（2） 受限于线程总数的现在，无法并发的处理大量的请求；<br>（3） 过多频繁的线程上下文切换，产生了更多的CPU开销；<br>（4） 多线程并发往往伴随互斥和死锁等问题，增加了程序设计复杂度。</p>
+</blockquote>
+<p>综上，多线程模型在高并发的I/O密集型应用中没有太多的优势。</p>
+<h2 id="Node-js中的单线程服务器"><a href="#Node-js中的单线程服务器" class="headerlink" title="Node.js中的单线程服务器"></a>Node.js中的单线程服务器</h2><p>为了解决多线服务器在高并发的I/O密集型应用中的不足，同时避免早期简单单线程服务器的性能障碍，Node.js采用了一种<font color="red">基于”事件循环”的非阻塞式单线程模型</font>，实现了如下两个目标：<br>保证每个请求都可以快速得到响应；<br>实现远超多线程模型的并发连接数。<br>提示 : <font color="red">Node.js在JS层面是单线程的—没有创建新线程的机制。但在C/C++底层是多线程的，即访问底层操作系统服务时，存在多个并发工作线程的情形—使用了线程池。</font></p>
+<h3 id="阻塞执行"><a href="#阻塞执行" class="headerlink" title="阻塞执行"></a>阻塞执行</h3><p>阻塞（Block）：也成为同步执行（Synchronize），只有前面的操作全部执行完成，才能开始后续的操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var conn=mysql.createConnection(...);	    //步骤1</span><br><span class="line">var result=conn.query(<span class="string">'INSERT...'</span>);	    //步骤2</span><br><span class="line">conn.end();</span><br></pre></td></tr></table></figure>
+<h3 id="非阻塞执行"><a href="#非阻塞执行" class="headerlink" title="非阻塞执行"></a>非阻塞执行</h3><p>非阻塞（Non-Block）：也称为异步执行（Asynchronize），后面的操作不必等待之前的操作的执行完毕，可以先执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(<span class="string">"读取请求数据"</span>);              //操作1</span><br><span class="line">fs.writeFile(<span class="string">'app.log'</span>,<span class="string">'访问日志'</span>,()=&gt;&#123;</span><br><span class="line">    console.log(<span class="string">"写出操作日志完成"</span>);      //操作2</span><br><span class="line">&#125;)</span><br><span class="line">console.log(<span class="string">"输出响应数据"</span>);              //操作3</span><br></pre></td></tr></table></figure>
+<h3 id="非阻塞执行的异步回调"><a href="#非阻塞执行的异步回调" class="headerlink" title="非阻塞执行的异步回调"></a>非阻塞执行的异步回调</h3><p>Node.js中的业务性代码，都是在单一的主线程中执行的；当遇到耗时的阻塞操作时（如：文件IO、网络访问、数据库请求等），不会等待其执行完毕，而是注册一个处理执行结果的回调函数，继续执行后续的代码。<br>待耗时的阻塞操作执行完成时，其对应的回调函数会转入回调函数队列，主线程在下次事件循环时会执行这些回调</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//同步函数调用</span><br><span class="line">var data=fs.readFileSync(<span class="string">'app.log'</span>);</span><br><span class="line">console.log(<span class="string">'文件内容：'</span>+data);</span><br><span class="line">//异步函数回调</span><br><span class="line">fs.readFile(<span class="string">'app.log'</span>,<span class="keyword">function</span> (err, data) &#123;</span><br><span class="line">    console.log(<span class="string">"文件内容："</span>+data);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="事件驱动"><a href="#事件驱动" class="headerlink" title="事件驱动"></a>事件驱动</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/事件驱动.png"></p><p></p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/事件驱动示例.png"></p><p></p>
+<h3 id="事件驱动编程"><a href="#事件驱动编程" class="headerlink" title="事件驱动编程"></a>事件驱动编程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var conn=openConnection();</span><br><span class="line">var data=conn.readData();</span><br><span class="line">response.writeData(data);</span><br><span class="line">request.on(<span class="string">'getData'</span>,<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    var conn=openConnection();</span><br><span class="line">    conn.on(<span class="string">'open'</span>,<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        var data=readData();</span><br><span class="line">        data.on(<span class="string">''</span>complete<span class="string">',function()&#123;</span></span><br><span class="line"><span class="string">            response.sendData()</span></span><br><span class="line"><span class="string">            return;</span></span><br><span class="line"><span class="string">        &#125;)</span></span><br><span class="line"><span class="string">    &#125;)</span></span><br><span class="line"><span class="string">&#125;)</span></span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/事件循环.png"></p><p></p>
+<h3 id="添加事件回调"><a href="#添加事件回调" class="headerlink" title="添加事件回调"></a>添加事件回调</h3><p>Node.js中添加新的事件回调函数到事件队列，可以使用下述五种方法之一：</p>
+<blockquote>
+<p>（1） 原生模块与定义的事件和监听器；<br>（2） 异步I/O库；<br>（3） 定时器回调；<br>（4） 全局对象process.netxTick()函数；（将回调放在本次事件循环队列末尾，下次循环开头，他要比所有的回调都要更早执行）<br>（5） 自定义事件。</p>
+</blockquote>
+<p>原生模块预定义事件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">socket.on(<span class="string">'close'</span>,()=&gt;&#123;</span><br><span class="line">    console.log(<span class="string">'connection closed'</span>);</span><br><span class="line">    var index=socket.indexOf(socket);</span><br><span class="line">    //服务器断开相应连接</span><br><span class="line">    socket.splice(index,1);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>异步IO库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var mysql=require(<span class="string">'mysql'</span>);</span><br><span class="line">var pool=mysql.createPool(config);</span><br><span class="line">pool.getConnection((err,connection)=&gt;&#123;</span><br><span class="line">    connection.query(<span class="string">'SELECT something FROM sometable'</span>,(err,rows)=&gt;&#123;</span><br><span class="line">        //处理数据</span><br><span class="line">        connection.end();</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>使用定时器添加回调函数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var timer=setInterval(()=&gt;&#123;</span><br><span class="line">    //周期性任务</span><br><span class="line">    <span class="keyword">if</span>(退出条件)&#123;</span><br><span class="line">        clearInterval(timer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var timer=setTimeout(()=&gt;&#123;</span><br><span class="line">    //一次性任务</span><br><span class="line">&#125;,1000)</span><br></pre></td></tr></table></figure>
+<p>process.nextTick()</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(<span class="string">'start'</span>);</span><br><span class="line">process.next(()=&gt;&#123;</span><br><span class="line">    console.log(<span class="string">'nextTick callback'</span>);</span><br><span class="line">&#125;)</span><br><span class="line">console.log(<span class="string">'scheduled'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="events模块"><a href="#events模块" class="headerlink" title="events模块"></a>events模块</h2><p>Node.js原生模块之一的event模块，提供了EventEmitter类型，Node.js中所有可用触发事件的对象都最终继承自这个对象。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">addListener(event,listener)</td>
+<td style="text-align:left">为指定事件绑定监听函数</td>
+</tr>
+<tr>
+<td style="text-align:left">on(event,listener)</td>
+<td style="text-align:left">为指定事件绑定监听函数</td>
+</tr>
+<tr>
+<td style="text-align:left">once(event,listener)</td>
+<td style="text-align:left">为事件绑定只能执行一次的监听函数</td>
+</tr>
+<tr>
+<td style="text-align:left">removeListener(event,listener)</td>
+<td style="text-align:left">删除指定事件的监听函数</td>
+</tr>
+<tr>
+<td style="text-align:left">removeAllListeners(event)</td>
+<td style="text-align:left">删除指定函数所有的监听函数</td>
+</tr>
+<tr>
+<td style="text-align:left">setMaxListeners(n)</td>
+<td style="text-align:left">设定事件处理函数的最大数量</td>
+</tr>
+<tr>
+<td style="text-align:left">listeners(event)</td>
+<td style="text-align:left">获取指定事件所有的监听函数</td>
+</tr>
+<tr>
+<td style="text-align:left">emit(event,[arg1],[arg2],…)</td>
+<td style="text-align:left">手工触发指定事件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><p>自定义事件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const EventEmitter=require(<span class="string">'events'</span>);</span><br><span class="line">var emitter=new EventEmitter();</span><br><span class="line">emitter.on(<span class="string">'some_event'</span>,<span class="function"><span class="title">function</span></span>()&#123;     //绑定事件回调</span><br><span class="line">    //操作</span><br><span class="line">&#125;)</span><br><span class="line">emitter.emit(<span class="string">'some_event'</span>);     //触发事件</span><br></pre></td></tr></table></figure>
+<h3 id="继承EventEmitter"><a href="#继承EventEmitter" class="headerlink" title="继承EventEmitter"></a>继承EventEmitter</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"use strict"</span></span><br><span class="line">const EventEmitter=require(<span class="string">'events'</span>);</span><br><span class="line">class DBConnection extends EventEmitter&#123;</span><br><span class="line">    <span class="function"><span class="title">connect</span></span>()&#123;</span><br><span class="line">        //</span><br><span class="line">        this.emit(<span class="string">'connected'</span>);     //触发事件</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var conn=new DBConnection();</span><br><span class="line">conn.on(<span class="string">'connected'</span>,()=&gt;&#123;       //绑定监听函数</span><br><span class="line">    console.log(<span class="string">'Connect Sucessfuly!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">conn.connect();</span><br></pre></td></tr></table></figure>
+<h3 id="事件传参"><a href="#事件传参" class="headerlink" title="事件传参"></a>事件传参</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const myEmitter=new MyEmitter();</span><br><span class="line">myEmitter.on(<span class="string">'myevent'</span>,<span class="keyword">function</span>(a,b)&#123;</span><br><span class="line">    console.log(a,b,this);</span><br><span class="line">    //若此处使用了箭头函数，则this不再指向myEmitter</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">myEmitter.emit(<span class="string">'myevent'</span>,10,20);</span><br></pre></td></tr></table></figure>
+<h3 id="错误事件"><a href="#错误事件" class="headerlink" title="错误事件"></a>错误事件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const   myEmitter=new MyEmitter();</span><br><span class="line">myEmitter.on(<span class="string">'error'</span>,(err)=&gt;&#123;</span><br><span class="line">    console.log(<span class="string">'An Error Occured!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">myEmitter.emit(<span class="string">'err'</span>,new Error(<span class="string">'ERR MSG!'</span>);)</span><br></pre></td></tr></table></figure>
+<h3 id="一次性事件"><a href="#一次性事件" class="headerlink" title="一次性事件"></a>一次性事件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const myEmitter=new MyEmitter();</span><br><span class="line">var m=0;</span><br><span class="line">myEmitter.once(<span class="string">'myevent'</span>,()=&gt;&#123;</span><br><span class="line">    console.log(++m);</span><br><span class="line">&#125;);</span><br><span class="line">myEmitter.emit(<span class="string">'myevent'</span>);      //输出：1</span><br><span class="line">myEmitter.emit(<span class="string">'myevent'</span>);      //没有任何输出</span><br></pre></td></tr></table></figure>
+<h3 id="监听器数量"><a href="#监听器数量" class="headerlink" title="监听器数量"></a>监听器数量</h3><p>由于可能引起内存泄露，Node.js默认情况下对一个对象的某个事件最多运行设置10个监听函数，超过限制了只能使用setMaxListeners函数进行修改。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//取消监听函数数量限制</span><br><span class="line">myEmitter.setMaxListeners(0);</span><br><span class="line">//返回指定对象上指定事件的监听函数数量</span><br><span class="line">EventListener.listenerCount(myEmitter,<span class="string">'myevent'</span>);</span><br></pre></td></tr></table></figure>
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "Nodejs事件驱动的异步模型+事件和event模块"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程"><span class="toc-number">1.</span> <span class="toc-text">进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程"><span class="toc-number">2.</span> <span class="toc-text">线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程与线程的关系"><span class="toc-number">3.</span> <span class="toc-text">进程与线程的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单线程服务器"><span class="toc-number">4.</span> <span class="toc-text">单线程服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程服务器"><span class="toc-number">5.</span> <span class="toc-text">多线程服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#多线程模型的特点"><span class="toc-number">5.1.</span> <span class="toc-text">多线程模型的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js中的单线程服务器"><span class="toc-number">6.</span> <span class="toc-text">Node.js中的单线程服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#阻塞执行"><span class="toc-number">6.1.</span> <span class="toc-text">阻塞执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非阻塞执行"><span class="toc-number">6.2.</span> <span class="toc-text">非阻塞执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非阻塞执行的异步回调"><span class="toc-number">6.3.</span> <span class="toc-text">非阻塞执行的异步回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件驱动"><span class="toc-number">6.4.</span> <span class="toc-text">事件驱动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件驱动编程"><span class="toc-number">6.5.</span> <span class="toc-text">事件驱动编程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加事件回调"><span class="toc-number">6.6.</span> <span class="toc-text">添加事件回调</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#events模块"><span class="toc-number">7.</span> <span class="toc-text">events模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义事件"><span class="toc-number">7.1.</span> <span class="toc-text">自定义事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承EventEmitter"><span class="toc-number">7.2.</span> <span class="toc-text">继承EventEmitter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件传参"><span class="toc-number">7.3.</span> <span class="toc-text">事件传参</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误事件"><span class="toc-number">7.4.</span> <span class="toc-text">错误事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性事件"><span class="toc-number">7.5.</span> <span class="toc-text">一次性事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监听器数量"><span class="toc-number">7.6.</span> <span class="toc-text">监听器数量</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

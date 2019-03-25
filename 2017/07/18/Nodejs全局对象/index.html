@@ -1,0 +1,379 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/nodejslogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>Nodejs全局对象+定时器+模块系统</h1>
+                    <p>by 明 on 2017-07-18 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="全局对象"><a href="#全局对象" class="headerlink" title="全局对象"></a>全局对象</h2><h2 id="Window"><a href="#Window" class="headerlink" title="Window?"></a>Window?</h2><blockquote>
+<ul>
+<li>嵌入在浏览器中的V8引擎，支持ES原生对象、BOM和DOM对象，全局对象为BOM中的window；</li>
+<li>声明全局作用域的变量和函数默认为window对象的成员—全局对象污染！</li>
+</ul>
+</blockquote>
+<h2 id="Global！"><a href="#Global！" class="headerlink" title="Global！"></a>Global！</h2><blockquote>
+<ul>
+<li>独立的Node.js环境中，不支持BOM和DOM对象，全局对象称为global/GLOBAL；</li>
+<li>声明的全局变量和函数在交互模式下是global对象的成员—全局对象污染；而在脚本模式下不是global对象的成员—避免了全局对象污染。</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h2 id="Global-console"><a href="#Global-console" class="headerlink" title="Global.console"></a>Global.console</h2><p>Global.console对象类似于Chrome中的console,用于向stdout和stderr中输出信息。</p>
+<p>Global.console向输出流输出：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var data=&#123;id:3,count:36&#125;;</span><br><span class="line"></span><br><span class="line">console.log(`COUNT IS: %d`,data.count);   //想stdout输出日志信息</span><br><span class="line">console.info(`COUNT IS:<span class="variable">$&#123;data.count&#125;</span>`);   //console.log()的别名</span><br><span class="line"></span><br><span class="line">console.error(`COUNT IS :<span class="variable">$&#123;data.count&#125;</span>`); //向stderr输出错误信息</span><br><span class="line">console.warn(`COUNT IS :<span class="variable">$&#123;data.count&#125;</span>`); //console.error()的别名</span><br><span class="line"></span><br><span class="line">console.trace(<span class="string">'Stack Trace'</span>);     //向stderr输出栈轨迹信息</span><br></pre></td></tr></table></figure>
+<p>Global.console具有强大的断言功能：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var data=&#123;id:3,count36,list:[]&#125;;</span><br><span class="line"></span><br><span class="line">//向stdout输出指定对象的字符串表示</span><br><span class="line">console.dir(data);</span><br><span class="line"></span><br><span class="line">//为真的断言，错误信息不会输出</span><br><span class="line">console.assert(data.count&gt;0,<span class="string">'COUNT IS ZERO'</span>);</span><br><span class="line"></span><br><span class="line">//为假的断言，抛出AssertError对象，输出错误信息，且终止脚本执行</span><br><span class="line">console.assert(data.list.length&gt;0,<span class="string">'NO DATA AVAILABLE'</span>);</span><br></pre></td></tr></table></figure>
+<p>Global.console对象测量代码执行耗时：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//使用console对象测量代码的执行耗时：</span><br><span class="line"></span><br><span class="line">console.time(<span class="string">'LONG-LOOP'</span>);      //计时开始</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i;i&lt;1000;i++)&#123;</span><br><span class="line">    ;</span><br><span class="line">&#125;</span><br><span class="line">console.timeEnd(<span class="string">'LONG-LOOP'</span>);   //计时结束</span><br><span class="line"></span><br><span class="line">//输出结果  ：LONG-LOOP: 523ms</span><br></pre></td></tr></table></figure>
+<h2 id="Global-process"><a href="#Global-process" class="headerlink" title="Global.process"></a>Global.process</h2><p>表示执行当前解释器运行所在的进程对象。<br>可以使用该对象获取当前操作系统及运行时信息，并操作脚本所在执行进程。<br>当操作系统启动Node.js解释器执行一个脚本文件时，会将必需的文件从文件系统调入内存，分配必须的内存空间，执行其中的代码—此过程就创建了一个执行进程。全局对象global.process就是这个进程的代码表示。</p>
+<p>Peocess对象中与操作系统相关的成员：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">process.arch            //获取CPU架构类型</span><br><span class="line">process.platform        //获取操作系统类型</span><br><span class="line">process.env             //获取操作系统环境变量</span><br><span class="line"></span><br><span class="line">var start =process.hrtime()     //获取高精度的计时器（纳秒级）</span><br><span class="line">setTimeout(()=&gt;&#123;</span><br><span class="line">    var diff=process.hrtime(start); //获取两次计时器时间差</span><br><span class="line"></span><br><span class="line">    console.log(<span class="string">"REAL DRUATION: %d"</span>,diff[0]*le9+diff[1]);</span><br><span class="line">&#125;,1000);</span><br><span class="line"></span><br><span class="line">process.cwd()               //获取当前所在工作目录</span><br><span class="line">process.execPath            //获取解释器所在目录</span><br><span class="line">process.execArgv            //获取解释器执行参数</span><br><span class="line">process.argv                //获取解释器运行时的命令行参数</span><br><span class="line">process.versions            //获取Node.js版本信息</span><br><span class="line">process.uptime()            //获取Node.js解释器运行时间（s）</span><br><span class="line">process.memoryUsage()       //获取内存信息</span><br><span class="line"></span><br><span class="line">process.pid                 //获取进程ID号</span><br><span class="line">process.kill(pid)           //向指定进程ID号发送退出信号</span><br></pre></td></tr></table></figure>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p>定时器任务：在间隔指定的时间后执行的任务。由于Node.js是单线程处理模型，所有到期要执行的定时器任务统一进入一个事件循环队列，由Node.js解释器依次调用执行。<br>Node.js提供了四种形式的定时器：</p>
+<blockquote>
+<ul>
+<li>process.nextTick( )：本次事件循环结束时立即执行的定时器；</li>
+<li>global.setImmediate( )：下次事件循环立即执行的定时器；</li>
+<li>global.setTimeout( )：一次性定时器；</li>
+<li>global.setInterval( )：周期性定时器；</li>
+</ul>
+</blockquote>
+<h2 id="setInterval（callaback-delay）-function"><a href="#setInterval（callaback-delay）-function" class="headerlink" title="setInterval（callaback,delay）:function"></a>setInterval（callaback,delay）:function</h2><p>设置一个按指定周期不断执行的定时器。<br>每隔delay毫秒重复调用回调callback。注意，取决于外部因素，如果操作系统定时器粒度负载，实际间隔可能会改变。<br>间隔值必须在1-2147483647的范围内（包含1和2147483647）。如果该值超出范围，则该值被当做1毫秒处理。一般来说，一个定时器不能超过24.8天。<br>返回一个代表该定时器的引用。<br>clearInterval（timer）:function<br>停止一个之前通过setInterval（）创建的定时器。回调不会再被执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var counter=0;</span><br><span class="line">var timer=setInterval(()=&gt;&#123;</span><br><span class="line">    counter++;</span><br><span class="line">    console.log(<span class="string">'%d hello'</span>,counter);</span><br><span class="line">    <span class="keyword">if</span>(counter&gt;=5)&#123;</span><br><span class="line">        clearInterval(timer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,1000);</span><br></pre></td></tr></table></figure>
+<h2 id="setTimeout（callaback-delay）-function"><a href="#setTimeout（callaback-delay）-function" class="headerlink" title="setTimeout（callaback,delay）:function"></a>setTimeout（callaback,delay）:function</h2><p>设置一个一次性定时器。<br>在至少delay毫秒后调用回调callback。实际延迟取决于外部因素，如果操作系统定时器粒度负载，实际间隔可能会改变。<br>间隔值必须在1-2147483647的范围内（包含1和2147483647）。如果该值超出范围，则该值被当做1毫秒处理。一般来说，一个定时器不能超过24.8天。<br>返回一个代表该定时器的引用。<br>clearTimeout（timer）:function<br>停止一个之前通过setTimeout（）创建的定时器。回调不会再被执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var counter=0;</span><br><span class="line">var timer=setTimeout(()=&gt;&#123;</span><br><span class="line">    counter++;</span><br><span class="line">    console.log(<span class="string">'%d hello'</span>,counter);</span><br><span class="line">&#125;,1000);</span><br></pre></td></tr></table></figure>
+<h2 id="setImmediate（callaback-delay）-function"><a href="#setImmediate（callaback-delay）-function" class="headerlink" title="setImmediate（callaback,delay）:function"></a>setImmediate（callaback,delay）:function</h2><p>设置一个尽可能立即执行的异步任务—下次事件循环开始时。<br>语义上，相当于setTimeout（callback，0）；但最终的执行时机，觉得于系统定时器粒度级系统负载。<br>返回一个代表该定时器的引用。<br>clearImmediate（timer）:function<br>停止一个之前通过setImmediate（）创建的定时器。回调不会再被执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var counter=0;</span><br><span class="line">var time=setImmediate(<span class="function"><span class="title">function</span></span> ()&#123;</span><br><span class="line">    counter++;</span><br><span class="line">    console.log(<span class="string">'%d immediate stack...'</span>,counter);</span><br><span class="line">    <span class="keyword">if</span>(counter&lt;5)&#123;</span><br><span class="line">        setImmediate(arguments.callee);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        clearImmediate(time);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(<span class="string">'end...'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="setImmediate（callaback-delay）-function-1"><a href="#setImmediate（callaback-delay）-function-1" class="headerlink" title="setImmediate（callaback,delay）:function"></a>setImmediate（callaback,delay）:function</h2><p>nextTick定时器不同于setTimeout(fn,0)或者setImmediate（fn）,它指定的定时器任务在本次事件循环结束时立即执行，先于IO事件回调或其他定时器任务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">setImmediate(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(<span class="string">'immediate 1'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">process.nextTick(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(<span class="string">'tick1'</span>)</span><br><span class="line">&#125;);</span><br><span class="line">setImmediate(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(<span class="string">'immediate 2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">process.nextTick(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(<span class="string">'tick2'</span>)</span><br><span class="line">&#125;);</span><br><span class="line">console.log(<span class="string">'end...'</span>)；</span><br><span class="line">// end...</span><br><span class="line">// tick1</span><br><span class="line">// tick2</span><br><span class="line">// immediate 1</span><br><span class="line">// immediate 2</span><br></pre></td></tr></table></figure>
+<h2 id="更多的全局函数"><a href="#更多的全局函数" class="headerlink" title="更多的全局函数"></a>更多的全局函数</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">函数名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">decodeURI()</td>
+<td style="text-align:left">解码一个编码的URI</td>
+</tr>
+<tr>
+<td style="text-align:left">decodeURIComponent()</td>
+<td style="text-align:left">解码一个编码的URI组件</td>
+</tr>
+<tr>
+<td style="text-align:left">encodeURI()</td>
+<td style="text-align:left">把字符串编码为URI</td>
+</tr>
+<tr>
+<td style="text-align:left">encodeURIComponent()</td>
+<td style="text-align:left">把字符串编码为URI组件</td>
+</tr>
+<tr>
+<td style="text-align:left">escape()</td>
+<td style="text-align:left">对字符串进行编码</td>
+</tr>
+<tr>
+<td style="text-align:left">unescape()</td>
+<td style="text-align:left">对由escape（）编码的字符串进行解码</td>
+</tr>
+<tr>
+<td style="text-align:left">parseInt()</td>
+<td style="text-align:left">解析一个字符串并返回一个整数</td>
+</tr>
+<tr>
+<td style="text-align:left">parseFloat()</td>
+<td style="text-align:left">解析一个字符串并返回一个浮点数</td>
+</tr>
+<tr>
+<td style="text-align:left">isNaN()</td>
+<td style="text-align:left">检测是否为NaN</td>
+</tr>
+<tr>
+<td style="text-align:left">isFinite()</td>
+<td style="text-align:left">检查是否为有穷大的数字</td>
+</tr>
+<tr>
+<td style="text-align:left">eval()</td>
+<td style="text-align:left">计算指定字符串，将其作为语句来执行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h2><p>类似于其他语言中的“包（package）”或“名称空间（namespace）”等概念，Node.js使用“模块（Module）”来规划不同的功能对象。</p>
+<p>Node.js中每个被加载的文件对应一个模块对象。</p>
+<p>一个文件/模块被第一次加载后，会在内存中保存对应的缓存对象；对一个模块多次重复引入，会使用该缓存对象，从而避免了重复加载到账创建出多个完全相同的模块对象。</p>
+<h3 id="主模块和子模块"><a href="#主模块和子模块" class="headerlink" title="主模块和子模块"></a>主模块和子模块</h3><p>与C等其他语言类似，Node.js启动时运行的第一个模块称为“主模块”—main module</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//可以使用下述方法获取主模块对象</span><br><span class="line">consoloe.log(process.mainModule);</span><br><span class="line">console.log(require.main);</span><br></pre></td></tr></table></figure>
+<p>除主模块外的其他模块都成为”子模块”。<br>每个子模块都可以导出（exports）一些数据或方法提供其他模块使用。要使用其他模块的功能，当前模块需要引入（require）指定的模块。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//判断当前模块是否是“主模块”</span><br><span class="line">console.log(module===process.mainModule);</span><br></pre></td></tr></table></figure>
+<h3 id="模块的封装"><a href="#模块的封装" class="headerlink" title="模块的封装"></a>模块的封装</h3><p>Node.js中的每个.js文件都自成一个模块，有自己专属成员属性和方法—”模块作用域”变量。模块文件中声明的变量和函数也都属于”模块作用域”。根本原因在于，Node.js在编译模块文件时会对其首位进行如下的包装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(exprots,require,module,__filename,__dirname)&#123;</span><br><span class="line">    module.exports=&#123;&#125;;</span><br><span class="line">    exports=module.exports;</span><br><span class="line"></span><br><span class="line">    //模块文件中原有的全部内容</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> module.exports;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="模块作用域变量"><a href="#模块作用域变量" class="headerlink" title="模块作用域变量"></a>模块作用域变量</h3><p>注意：声明在模块文件中的”全局变量” 不再是真正的全局变量，既不是global对象的成员；而是当前模块内部的局部变量。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">成员名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">__dirname:String</td>
+<td style="text-align:left">当前模块文件所在的目录名</td>
+</tr>
+<tr>
+<td style="text-align:left">__filename:String</td>
+<td style="text-align:left">当前模块文件的文件名</td>
+</tr>
+<tr>
+<td style="text-align:left">module:Object</td>
+<td style="text-align:left">指向当前模块的应用</td>
+</tr>
+<tr>
+<td style="text-align:left">module.exports:Object</td>
+<td style="text-align:left">当前模块待导出的供其他模块使用的对象</td>
+</tr>
+<tr>
+<td style="text-align:left">exports:Object</td>
+<td style="text-align:left">指向module.exports对象的引用</td>
+</tr>
+<tr>
+<td style="text-align:left">require:Function</td>
+<td style="text-align:left">引入其他模块，使用其他模块的module.exports对象</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Module-exports和exports"><a href="#Module-exports和exports" class="headerlink" title="Module.exports和exports"></a>Module.exports和exports</h3><p>一个模块可以导出一个供其他模块使用的对象，这个对象就是module.exports对象。起始时，他是一个{ }对象。<br>Exports对象作为module.exports对象的引用，可以作为module.expots的简写形式。<br>注意:其他模块可以引入的是module.exports对象，而不是exports对象！所以下面两张情形的结果是不同的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">exports.add=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">&#125;</span><br><span class="line">等同于</span><br><span class="line">module.exports.add=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports=<span class="function"><span class="title">function</span></span>()&#123;//无效</span><br><span class="line">&#125;</span><br><span class="line">不同于</span><br><span class="line">module.exports=<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模块的分类"><a href="#模块的分类" class="headerlink" title="模块的分类"></a>模块的分类</h3><p>1 核心模块</p>
+<blockquote>
+<ul>
+<li>被编译进二进制执行文件，可以被解析器直接使用，加载速度最快；</li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">模块名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">global</td>
+<td style="text-align:left">全局对象模块</td>
+</tr>
+<tr>
+<td style="text-align:left">console</td>
+<td style="text-align:left">控制台模块</td>
+</tr>
+<tr>
+<td style="text-align:left">util</td>
+<td style="text-align:left">提供常用函数的集合，用于弥补核心JS的功能过于精简的不足</td>
+</tr>
+<tr>
+<td style="text-align:left">event</td>
+<td style="text-align:left">实现了Node.js的是钱驱动型的异步调用</td>
+</tr>
+<tr>
+<td style="text-align:left">fs</td>
+<td style="text-align:left">文件系统IO/操作模块</td>
+</tr>
+<tr>
+<td style="text-align:left">http</td>
+<td style="text-align:left">提供基于HTTP协议的请求和响应</td>
+</tr>
+<tr>
+<td style="text-align:left">net</td>
+<td style="text-align:left">提供基于Socket的网络连接</td>
+</tr>
+<tr>
+<td style="text-align:left">dns</td>
+<td style="text-align:left">DNS解析服务模块</td>
+</tr>
+<tr>
+<td style="text-align:left">crypto</td>
+<td style="text-align:left">加密和解密功能模块</td>
+</tr>
+</tbody>
+</table>
+<p>2 文件模块</p>
+<blockquote>
+<ul>
+<li>没有后缀的文件模块，被作为JavaScript文本加载；</li>
+<li>.js后缀的文件模块，被作为JavaScript文本加载；</li>
+<li>.json后缀的文件模块，被作为json字符串加载；</li>
+<li>.node后缀的文件模块，被作为C/C++二进制插件加载；</li>
+</ul>
+</blockquote>
+<p>3 目录模块</p>
+<blockquote>
+<ul>
+<li>包含package.json文件的目录；</li>
+<li>包含index.js文件的目录；</li>
+<li>包含index.json文件的目录；</li>
+<li>包含index.node文件的目录；</li>
+</ul>
+</blockquote>
+<h3 id="Require-模块"><a href="#Require-模块" class="headerlink" title="Require()模块"></a>Require()模块</h3><p>Require()函数用于引入另一个模块，其可用的参数有如下形式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*核心模块*/</span><br><span class="line">const http=require(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line">/**相对或绝对路径开头的模块名**/</span><br><span class="line">const c1=require(<span class="string">'./calc'</span>);     //可能是文件模块或目录模块</span><br><span class="line">const c2=require(<span class="string">'../calc'</span>);    //可能是文件模块或目录模块</span><br><span class="line">const c3=require(<span class="string">'/calc'</span>);      //可能是文件模块或目录模块</span><br><span class="line"></span><br><span class="line">/**不以路径名开头的非核心模块名**/</span><br><span class="line">const mysql=require(<span class="string">'mysql'</span>);   //可能是文件模块或目录模块</span><br></pre></td></tr></table></figure>
+<h3 id="非核心模块的查找路径"><a href="#非核心模块的查找路径" class="headerlink" title="非核心模块的查找路径"></a>非核心模块的查找路径</h3><p>对于每个加载的文件模块，创建这个模块对象的时候，module对象便有一个paths属性，用于指定查找不以“./”或“../”或“/”开头的模块名时所用的路径。其值例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'c:\\mynode\\project1\\lib\\node_modules'</span>,</span><br><span class="line"> <span class="string">'c:\\mynode\\project1\\node_modules'</span>,</span><br><span class="line"> <span class="string">'c:\\mynode\\node_modules'</span>,</span><br><span class="line"> <span class="string">'c:\\node_modules'</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="模块查找的顺序"><a href="#模块查找的顺序" class="headerlink" title="模块查找的顺序"></a>模块查找的顺序</h3><blockquote>
+<ol>
+<li>文件/目录模块的缓存</li>
+<li>原生模块的缓存</li>
+<li>原生模块</li>
+<li>文件/目录模块</li>
+</ol>
+</blockquote>
+
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "Nodejs全局对象+定时器+模块系统"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#全局对象"><span class="toc-number">1.</span> <span class="toc-text">全局对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Window"><span class="toc-number">2.</span> <span class="toc-text">Window?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Global！"><span class="toc-number">3.</span> <span class="toc-text">Global！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Global-console"><span class="toc-number">4.</span> <span class="toc-text">Global.console</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Global-process"><span class="toc-number">5.</span> <span class="toc-text">Global.process</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定时器"><span class="toc-number">5.1.</span> <span class="toc-text">定时器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setInterval（callaback-delay）-function"><span class="toc-number">6.</span> <span class="toc-text">setInterval（callaback,delay）:function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setTimeout（callaback-delay）-function"><span class="toc-number">7.</span> <span class="toc-text">setTimeout（callaback,delay）:function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setImmediate（callaback-delay）-function"><span class="toc-number">8.</span> <span class="toc-text">setImmediate（callaback,delay）:function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setImmediate（callaback-delay）-function-1"><span class="toc-number">9.</span> <span class="toc-text">setImmediate（callaback,delay）:function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多的全局函数"><span class="toc-number">10.</span> <span class="toc-text">更多的全局函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块系统"><span class="toc-number">11.</span> <span class="toc-text">模块系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主模块和子模块"><span class="toc-number">11.1.</span> <span class="toc-text">主模块和子模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块的封装"><span class="toc-number">11.2.</span> <span class="toc-text">模块的封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块作用域变量"><span class="toc-number">11.3.</span> <span class="toc-text">模块作用域变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Module-exports和exports"><span class="toc-number">11.4.</span> <span class="toc-text">Module.exports和exports</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块的分类"><span class="toc-number">11.5.</span> <span class="toc-text">模块的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Require-模块"><span class="toc-number">11.6.</span> <span class="toc-text">Require()模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非核心模块的查找路径"><span class="toc-number">11.7.</span> <span class="toc-text">非核心模块的查找路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块查找的顺序"><span class="toc-number">11.8.</span> <span class="toc-text">模块查找的顺序</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

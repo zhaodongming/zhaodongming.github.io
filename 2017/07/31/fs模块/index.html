@@ -1,0 +1,314 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/nodejslogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>fs模块</h1>
+                    <p>by 明 on 2017-07-31 </p>
+                </div>
+                <div class="post-content">
+                    <p>fs模块是Node.js核心模块之一，提供了符合POSIX规范的操作文件和目录的基本方法。这些方法都有同步和异步两种形式。在I/O操作密集型的应用中，推荐使用异步调用方式，以避免整个应用程序的阻塞。<br>所有异步的回调函数中第一个参数都是一个IO错误对象：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/*********同步调用方式***************/</span><br><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">fs.unlinkSync(<span class="string">'/f2'</span>);</span><br><span class="line">console.log(<span class="string">'succ'</span>);//文件删除完成才输出succ</span><br><span class="line"></span><br><span class="line">/*********异步调用方式**************/</span><br><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">fs.unlunk(<span class="string">'/f'</span>,(err)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)throw err;</span><br><span class="line">    console.log(<span class="string">'succ'</span>);//文件没有删除完成就会输出succ</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="常用Class"><a href="#常用Class" class="headerlink" title="常用Class"></a>常用Class</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Class名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">fs.stats</td>
+<td style="text-align:left">文件或目录的统计信息描述对象</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.readStream</td>
+<td style="text-align:left">stream.Readable接口的实现对象</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.writeStream</td>
+<td style="text-align:left">stream.Writable接口的实现对象</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.FSWatcher</td>
+<td style="text-align:left">可用于监视文件修改的文件监视器对象</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">方法名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">fs.mkdir()</td>
+<td style="text-align:left">创建目录</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.rmdir()</td>
+<td style="text-align:left">删除目录</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.readFile()</td>
+<td style="text-align:left">读取文件内容</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.writeFile()</td>
+<td style="text-align:left">向文件中写出内容</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.appendFile()</td>
+<td style="text-align:left">向文件中追加内容</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.unlink()</td>
+<td style="text-align:left">删除文件</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.rename()</td>
+<td style="text-align:left">重命名文件</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const  fs=require(<span class="string">'fs'</span>);</span><br><span class="line">var data=fs.readFileSync(<span class="string">'./htdocs/index.html'</span>);</span><br><span class="line">console.log(data.toString());</span><br><span class="line">console.log(<span class="string">'脚本执行结束'</span>);</span><br><span class="line">fs.readFile(<span class="string">'./htdocs/index.html'</span>,<span class="keyword">function</span> (err, data) &#123;</span><br><span class="line">    <span class="keyword">if</span>(err)throw err;</span><br><span class="line">     console.log(data);</span><br><span class="line">     console.log(data.toString());</span><br><span class="line">     fs.writeFile(<span class="string">'./htdocs/index_backup.html'</span>,data,<span class="keyword">function</span> (err) &#123;</span><br><span class="line">         <span class="keyword">if</span>(err)throw err;</span><br><span class="line">         console.log(<span class="string">'备份完成'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    fs.appendFile(<span class="string">'./htdocs/index_backup.html'</span>,data,<span class="keyword">function</span> (err) &#123;</span><br><span class="line">        <span class="keyword">if</span>(err)throw err;</span><br><span class="line">        console.log(<span class="string">'追加完成'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="文件信息统计"><a href="#文件信息统计" class="headerlink" title="文件信息统计"></a>文件信息统计</h2><p>fs.stat()和fs.statSync()方法用于返回一个文件或目录的统计信息对象（fs.Stats类型）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    mode:33188,</span><br><span class="line">    nlink:1,</span><br><span class="line">    uid:100,</span><br><span class="line">    gid:100,</span><br><span class="line">    size:527,</span><br><span class="line">    atime:Mon,10,Oct 2011 23:24:11 GMT,</span><br><span class="line">    mtime:Mone,10 Oct 2011 23:24:11 GMT,</span><br><span class="line">    ctime:Mon,10 Oct 2011 23:24:11 GMT,</span><br><span class="line">    birthtime:Mon,10 Oct 2011 23:24:11 GMT</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>fs.Stats对象还提供了如下方法可用于检测文件的物理特性：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">stats.isFile()</td>
+<td style="text-align:left">是否为文件</td>
+</tr>
+<tr>
+<td style="text-align:left">stats.isDirectory()</td>
+<td style="text-align:left">是否为目录</td>
+</tr>
+<tr>
+<td style="text-align:left">stats.isBlockDevice()</td>
+<td style="text-align:left">是否为块设备，如磁盘</td>
+</tr>
+<tr>
+<td style="text-align:left">stats.isCharacterDevice()</td>
+<td style="text-align:left">是否为字符设备，如键盘</td>
+</tr>
+<tr>
+<td style="text-align:left">stats.isFIFO()</td>
+<td style="text-align:left">是否为FIFO设备，如打印机</td>
+</tr>
+<tr>
+<td style="text-align:left">stats.isSocket()</td>
+<td style="text-align:left">是否为Socket文件</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文件模式"><a href="#文件模式" class="headerlink" title="文件模式"></a>文件模式</h2><p>类Unix文件系统中，针对文件和目录的操作，为了控制不同用户不同权限，定义了如下的操作权限：</p>
+<blockquote>
+<ul>
+<li>r: Read,读取权限，对应数字为4</li>
+<li>w: Write,写出权限，对应数字为2</li>
+<li>x: Execute，执行权限，对应数字为1</li>
+</ul>
+</blockquote>
+<p>不同的用户又分为如下三种类型:</p>
+<blockquote>
+<ul>
+<li>u: User,文件所有者</li>
+<li>g: Group,文件所有者所在组的其他用户</li>
+<li>o: Other，其他用户</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-rwx------  700  文件所有者对文件具有读取、写入和执行的权限。</span><br><span class="line">-rwxr--r--  744  文件所有者具有读、写与执行的权限。其他用户则具有读取的权限。</span><br><span class="line">-rw-rw-r--  664  文件所有者与同组用户对文件具有读写的权限，而其他用户具有读取的权限。</span><br><span class="line">drwx--x--x  711  目录所有者具有读写与进入目录的权限，其他用户只能进入该目录。</span><br></pre></td></tr></table></figure>
+<h2 id="操作目录"><a href="#操作目录" class="headerlink" title="操作目录"></a>操作目录</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">方法名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">fs.mkdir(path[,],callback)</td>
+<td style="text-align:left">创建指定目录</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.mkdirSync(path[,mode])</td>
+<td style="text-align:left">创建指定目录</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.rmdir(path,callback)</td>
+<td style="text-align:left">删除指定目录</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.rmdirSync(path)</td>
+<td style="text-align:left">删除指定目录</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.readdir(path[,options],callback)</td>
+<td style="text-align:left">读取目录下内容</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.readdirSync(path[,options])</td>
+<td style="text-align:left">读取目录下内容</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line">const path=<span class="string">'./htdocs'</span>;</span><br><span class="line">fs.stat(path,(err,stats)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;//指定目录不存在</span><br><span class="line">        fs.mkdir(path);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;//指定路径存在</span><br><span class="line">        fs.readdir(path,()=&gt;&#123;</span><br><span class="line">            console.log(list);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line"> fs.mkdir(<span class="string">'./htdocs/img'</span>,777,<span class="keyword">function</span> (err) &#123;</span><br><span class="line">     <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        throw err</span><br><span class="line">     &#125;;</span><br><span class="line">     console.log(<span class="string">"目录创建完成"</span>);</span><br><span class="line">&#125;)</span><br><span class="line">fs.readdir(<span class="string">'./htdocs'</span>,<span class="keyword">function</span> (err,stats) &#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        throw err;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        console.log(stats)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">fs.rmdir(<span class="string">'./htdocs/img'</span>,<span class="keyword">function</span> (err) &#123;</span><br><span class="line">    <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        throw err;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        console.log(<span class="string">'文件删除成功'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "fs模块"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用Class"><span class="toc-number">1.</span> <span class="toc-text">常用Class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用方法"><span class="toc-number">2.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件信息统计"><span class="toc-number">3.</span> <span class="toc-text">文件信息统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件模式"><span class="toc-number">4.</span> <span class="toc-text">文件模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作目录"><span class="toc-number">5.</span> <span class="toc-text">操作目录</span></a></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

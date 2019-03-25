@@ -1,0 +1,336 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/nodejslogo.jpg" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>文件IO</h1>
+                    <p>by 明 on 2017-07-31 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="读写文件全部内容"><a href="#读写文件全部内容" class="headerlink" title="读写文件全部内容"></a>读写文件全部内容</h2><p>对于数据量不是很大的文件，可以一次性的写入其中的全部内容。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">fs.readFile(file[,options],callback)</td>
+<td style="text-align:left">读取文件内容</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.writeFile(file,data[,options],callback)</td>
+<td style="text-align:left">读出内容</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.appendFile(file,data[,options],callback)</td>
+<td style="text-align:left">追加内容</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h3 id="读取文件全部内容"><a href="#读取文件全部内容" class="headerlink" title="读取文件全部内容"></a>读取文件全部内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const fs=require(<span class="string">"fs"</span>);</span><br><span class="line">const src=<span class="string">"./htdocs/index.html"</span>;</span><br><span class="line">fs.readFile(src,(err,data)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)throw err;</span><br><span class="line">    console.log(data);      //读取到的数据保存在一个Buffer实例中</span><br><span class="line">    console.log(data.toString());</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="向文件中写出内容"><a href="#向文件中写出内容" class="headerlink" title="向文件中写出内容"></a>向文件中写出内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const fs=require(<span class="string">"fs"</span>);</span><br><span class="line">const dest=<span class="string">"./htdocs/index.html"</span>;</span><br><span class="line">var data=<span class="string">'Som Data'</span>;</span><br><span class="line">fs.writeFile(dest,data,(err)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)throw err;</span><br><span class="line">    console.log(<span class="string">'Write Finished!'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>注意：若目标文件不存在，则writeFile方法会自动创建该文件；若目标文件存在，该方法会覆盖原来所以内容。</p>
+<h2 id="读写文件部分内容"><a href="#读写文件部分内容" class="headerlink" title="读写文件部分内容"></a>读写文件部分内容</h2><p>读写文件的部分内容，需要按照如下步骤进行：</p>
+<blockquote>
+<p>1、 打开指定文件，获取对应的”文件描述符（File Descriptor）”;<br>2、 读取或写出文件指定部分的内容；<br>3、 关闭文件带其它进程使用。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">fs.open(path,flags[,mode],callback)</td>
+<td style="text-align:left">打开文件</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.read(fd,buffer,offset,length,position,callback)</td>
+<td style="text-align:left">读取文件</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.write(fd,buffer,offset,length[,position],callback)</td>
+<td style="text-align:left">写出文件</td>
+</tr>
+<tr>
+<td style="text-align:left">fs.close(fd.callback)</td>
+<td style="text-align:left">关闭文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="读取文件部分内容"><a href="#读取文件部分内容" class="headerlink" title="读取文件部分内容"></a>读取文件部分内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const fs=require(<span class="string">"fs"</span>);</span><br><span class="line">const src=<span class="string">'./log/full.txt'</span>;</span><br><span class="line">fs.open(src,<span class="string">'r'</span>,(err,fd)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)throw err;</span><br><span class="line">    const buf=new Buffer(1024);</span><br><span class="line">    fs.read(fd,buf,0,1024,0,(err,bytesRead,buffer)=&gt;&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)throw err;</span><br><span class="line">        console.log(buffer.toString(<span class="string">'UTF-8'</span>,0,bytesRead));</span><br><span class="line">        fs.close(fd);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="向文件写出部分内容"><a href="#向文件写出部分内容" class="headerlink" title="向文件写出部分内容"></a>向文件写出部分内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const fs=require(<span class="string">"fs"</span>);</span><br><span class="line">const dest=<span class="string">'./log/part.txt'</span>;</span><br><span class="line">fs.open(dest,<span class="string">'w'</span>,(err,fd)=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(err)throw err;</span><br><span class="line">    const buf=new Buffer(<span class="string">"Some Content..."</span>);</span><br><span class="line">    fs.write(fd,buf,0,<span class="string">'UTF-8'</span>,(err,bytesWriten,string)=&gt;&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)throw err;</span><br><span class="line">        console.log(<span class="string">'Write Finish!'</span>);</span><br><span class="line">        fs.close(fd);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="文件流的流式操作"><a href="#文件流的流式操作" class="headerlink" title="文件流的流式操作"></a>文件流的流式操作</h2><p>流(Stream)，是一组有序的，有起点和终点的字节或字符数据的集合。</p>
+<p>Node.js中，stream模块的readable接口的实现对象都可以用来读取文件中的部分数据暂存在缓冲区中，如:fs.readStream、http.IncomingMessage、net.Socket/process.stdin等；这些对象都继承了EventEmitter类，在读取数据过程中，可以触发各种流读取相关事件。</p>
+<p>Stream模块中的Writable接口的实现对象都可以用来写出数据到缓冲区中、待缓冲区满后再向物理介质输出:fs.writeStream、http.ClientRequest、http.serverResponse、net.Scoket、process.stdout等；这些对象都继承了EventEmitter类，在写出数据过程中，可以触发各种数据写出相关事件。</p>
+<h3 id="输入流对象事件"><a href="#输入流对象事件" class="headerlink" title="输入流对象事件"></a>输入流对象事件</h3><p>stream.Readable对象可以触发下列事件:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">事件名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">readable</td>
+<td style="text-align:left">当可以从流中读取数据时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">data</td>
+<td style="text-align:left">当读取到数据时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">end</td>
+<td style="text-align:left">当读取到流结尾时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">error</td>
+<td style="text-align:left">当出现读取错误时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">close</td>
+<td style="text-align:left">当流关闭触发</td>
+</tr>
+</tbody>
+</table>
+<h3 id="输入流对象方法"><a href="#输入流对象方法" class="headerlink" title="输入流对象方法"></a>输入流对象方法</h3><p>stream.Readable对象可以执行如下操作:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">事件名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">read（）</td>
+<td style="text-align:left">读取数据</td>
+</tr>
+<tr>
+<td style="text-align:left">setEncoding()</td>
+<td style="text-align:left">设置字符编码</td>
+</tr>
+<tr>
+<td style="text-align:left">pause()</td>
+<td style="text-align:left">暂停读取</td>
+</tr>
+<tr>
+<td style="text-align:left">resume()</td>
+<td style="text-align:left">继续读取</td>
+</tr>
+<tr>
+<td style="text-align:left">pipe()</td>
+<td style="text-align:left">设置一个数据通道</td>
+</tr>
+<tr>
+<td style="text-align:left">unpipe()</td>
+<td style="text-align:left">取消设置的数据通道</td>
+</tr>
+</tbody>
+</table>
+<h3 id="输出流对象事件"><a href="#输出流对象事件" class="headerlink" title="输出流对象事件"></a>输出流对象事件</h3><p>stream.Writable对象可以触发下列事件:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">事件名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">drain</td>
+<td style="text-align:left">当输出缓冲区已经排空时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">finish</td>
+<td style="text-align:left">当end()方法把所有数据写出到缓存区时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">pipe</td>
+<td style="text-align:left">当用于读取数据的对象调用pipe()时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">unpipe</td>
+<td style="text-align:left">当用于读取数据的对象调用unpipe()时触发</td>
+</tr>
+<tr>
+<td style="text-align:left">error</td>
+<td style="text-align:left">当输出过程产生错误时触发</td>
+</tr>
+</tbody>
+</table>
+<h3 id="输出流对象方法"><a href="#输出流对象方法" class="headerlink" title="输出流对象方法"></a>输出流对象方法</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">方法名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">write()</td>
+<td style="text-align:left">写出数据</td>
+</tr>
+<tr>
+<td style="text-align:left">end()</td>
+<td style="text-align:left">当没有更多数据需要再被输出时调用，此方法将情况输出缓存区</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line">var reader=fs.createReadStream(<span class="string">'./htdocs/2.mp4'</span>);</span><br><span class="line">var writer=fs.createWriteStream(<span class="string">'./log/10.mp4'</span>);</span><br><span class="line">reader.on(<span class="string">'data'</span>,<span class="keyword">function</span> (buf) &#123;</span><br><span class="line">    writer.write(buf,0,buf.length);</span><br><span class="line">&#125;);</span><br><span class="line">reader.on(<span class="string">'end'</span>,<span class="keyword">function</span> (err) &#123;</span><br><span class="line">    <span class="keyword">if</span>(err)throw err;</span><br><span class="line">    reader.close();</span><br><span class="line">    writer.end();</span><br><span class="line">&#125;);</span><br><span class="line">writer.on(<span class="string">'finish'</span>,<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    console.log(<span class="string">'输出文件完成'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="使用管道"><a href="#使用管道" class="headerlink" title="使用管道"></a>使用管道</h3><p>Pipe:管道，可以用于自动的读取一个Readable对象中的所以数据，并写出到指定的Writable对象中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const fs=require(<span class="string">'fs'</span>);</span><br><span class="line">const src=<span class="string">'./htdocs/index.html'</span>;</span><br><span class="line">const dest=<span class="string">'./backup/index.html'</span>;</span><br><span class="line">var reader=fs.createReadStream(src);</span><br><span class="line">var writer=fs.createWriteSteam(dest);</span><br><span class="line">reader.pipe(writer);    //使用管道实现自动读写</span><br><span class="line">reader.on(<span class="string">'end'</span>,()=&gt;&#123;</span><br><span class="line">    console.log(<span class="string">'Copy Finish!'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "文件IO"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#读写文件全部内容"><span class="toc-number">1.</span> <span class="toc-text">读写文件全部内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#读取文件全部内容"><span class="toc-number">1.1.</span> <span class="toc-text">读取文件全部内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向文件中写出内容"><span class="toc-number">1.2.</span> <span class="toc-text">向文件中写出内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读写文件部分内容"><span class="toc-number">2.</span> <span class="toc-text">读写文件部分内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#读取文件部分内容"><span class="toc-number">2.1.</span> <span class="toc-text">读取文件部分内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向文件写出部分内容"><span class="toc-number">2.2.</span> <span class="toc-text">向文件写出部分内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件流的流式操作"><span class="toc-number">3.</span> <span class="toc-text">文件流的流式操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#输入流对象事件"><span class="toc-number">3.1.</span> <span class="toc-text">输入流对象事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入流对象方法"><span class="toc-number">3.2.</span> <span class="toc-text">输入流对象方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出流对象事件"><span class="toc-number">3.3.</span> <span class="toc-text">输出流对象事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出流对象方法"><span class="toc-number">3.4.</span> <span class="toc-text">输出流对象方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用管道"><span class="toc-number">3.5.</span> <span class="toc-text">使用管道</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>

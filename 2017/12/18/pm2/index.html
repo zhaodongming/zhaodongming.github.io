@@ -1,0 +1,205 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <link rel="shortcut icon" href="/images/mylogo.jpg">
+    <title>ZDM的杂货铺</title>
+    <link rel="stylesheet" href="/css/fontAawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/mylogo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="menu-item">
+                        <a href="/" class="nav-link" >首页</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/archives" class="nav-link" >归档</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="/about" class="nav-link" >关于</a>
+                    </li>
+                    
+                    <li class="menu-item">
+                        <a href="https://github.com/zhaodongming" class="nav-link" >开源地址</a>
+                    </li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="main">
+    
+<section>
+    <div  class="container">
+        <div class="main">
+            <article class="post">
+                <div class="posticon">
+                    <img src="http://ziyuan.qikepower.com/pm2logo.png" alt="">
+                </div>
+                <div class="posttitle">
+                    <h1>PM2</h1>
+                    <p>by 明 on 2017-12-18 </p>
+                </div>
+                <div class="post-content">
+                    <h2 id="PM2介绍"><a href="#PM2介绍" class="headerlink" title="PM2介绍"></a>PM2介绍</h2><p>PM2是具有内置负载平衡器的Node.js应用程序的生产过程管理器。它使您可以永久保持应用程序的活动状态，无需停机即可重新加载应用程序，并且可以方便常见的系统管理任务</p>
+<p>在生产模式下启动应用程序非常简单：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 start app.js</span><br></pre></td></tr></table></figure>
+<p>PM2不断受到1400多个测试的攻击。</p>
+<p>官方网站：http：//pm2.keymetrics.io/</p>
+<p>适用于Linux、macOS、Windows平台。从Node.js 0.12开始所有的Node.js版本都开始支持PM2。</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/pm2.png"></p><p></p>
+<a id="more"></a>
+<h2 id="安装PM2"><a href="#安装PM2" class="headerlink" title="安装PM2"></a>安装PM2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install pm2 -g</span><br></pre></td></tr></table></figure>
+<h2 id="启动应用程序"><a href="#启动应用程序" class="headerlink" title="启动应用程序"></a>启动应用程序</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 start app.js</span><br></pre></td></tr></table></figure>
+<p>现在，您的应用程序已被PM2程序守护、监控并保持永久生效。</p>
+<h2 id="监视PM2和应用程序"><a href="#监视PM2和应用程序" class="headerlink" title="监视PM2和应用程序"></a>监视PM2和应用程序</h2><p>要监视你的应用程序，只需输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 register</span><br></pre></td></tr></table></figure>
+<h2 id="更新PM2"><a href="#更新PM2" class="headerlink" title="更新PM2"></a>更新PM2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//安装最新的PM2版本</span><br><span class="line">$ npm install pm2@latest -g</span><br><span class="line">//保存进程列表，退出旧的PM2并恢复所有进程</span><br><span class="line">$ pm2 update</span><br></pre></td></tr></table></figure>
+<h2 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h2><h3 id="命令概述"><a href="#命令概述" class="headerlink" title="命令概述"></a>命令概述</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">//常用命令</span><br><span class="line">$ npm install pm2 -g             //安装PM2</span><br><span class="line">$ pm2 start app.js               //启动，守护进程和自动重启应用程序（Node）</span><br><span class="line">$ pm2 start app.py               //启动，守护进程和自动重启应用程序（Python）</span><br><span class="line">$ pm2 start npm -- start         //启动，守护进程并自动重新启动节点应用程序</span><br><span class="line"></span><br><span class="line">//集群模式（仅适用于Node.js）</span><br><span class="line">$ pm2 start app.js -i 4          //在集群模式下启动4个应用程序实例,它会负载平衡网络查询到每个应用程序</span><br><span class="line">$ pm2 reload all                 //零秒停机重新加载</span><br><span class="line">$ pm2 scale [app-name] 10        //将群集应用程序扩展到10进程</span><br><span class="line"></span><br><span class="line">//进程监视</span><br><span class="line">$ pm2 list                       //列出所有以PM2开始的进程</span><br><span class="line">$ pm2 monit                      //显示每个应用程序的内存和CPU使用情况</span><br><span class="line">$ pm2 show [app-name]            //显示应用程序的所有信息</span><br><span class="line"></span><br><span class="line">//日志管理</span><br><span class="line">$ pm2 logs                       //显示所有应用程序的日志</span><br><span class="line">$ pm2 logs [app-name]            //显示特定应用程序的日志</span><br><span class="line">$ pm2 logs --json                //以JSON格式记录</span><br><span class="line">$ pm2 flush</span><br><span class="line">$ pm2 reloadLogs</span><br><span class="line"></span><br><span class="line">//进程状态管理</span><br><span class="line">$ pm2 start app.js --name =<span class="string">"api"</span> //启动应用程序并将其命名为<span class="string">"api"</span></span><br><span class="line">$ pm2 start app.js -- -a 34      //启动应用程序并传递选项<span class="string">"-a 34"</span>作为参数</span><br><span class="line">$ pm2 start app.js --watch       //重新启动应用程序的文件更改</span><br><span class="line">$ pm2 start script.sh            //启动bash脚本</span><br><span class="line">$ pm2 start app.json             //启动在app.json中声明的所有应用程序</span><br><span class="line">$ pm2 reset [app-name]           //重置所有计数器</span><br><span class="line">$ pm2 stop all                   //停止所有应用程序</span><br><span class="line">$ pm2 stop 0                     //停止ID为0的进程</span><br><span class="line">$ pm2 restart all                //重新启动所有应用程序</span><br><span class="line">$ pm2 gracefulReload all         //以集群模式轻松地重新加载所有应用程序</span><br><span class="line">$ pm2 delete all                 //杀死和删除所有的应用程序</span><br><span class="line">$ pm2 delete 0                   //删除ID为0的应用程序</span><br><span class="line"></span><br><span class="line">//启动/引导管理</span><br><span class="line">$ pm2 startup                    //检测init系统，在启动时生成并配置pm2启动</span><br><span class="line">$ pm2 save                       //保存当前进程列表</span><br><span class="line">$ pm2 resurrect                  //恢复以前保存的进程</span><br><span class="line">$ pm2 unstartup                  //禁用并删除启动系统</span><br><span class="line"></span><br><span class="line">$ pm2 update                     //保存进程，杀死PM2并恢复进程</span><br><span class="line">$ pm2 generate                   //生成一个示例json配置文件</span><br><span class="line"></span><br><span class="line">//部署</span><br><span class="line">$ pm2 deploy app.json prod setup     //安装程序“prod”远程服务器</span><br><span class="line">$ pm2 deploy app.json prod           //更新“prod”远程服务器</span><br><span class="line">$ pm2 deploy app.json prod revert 2  //将  “prod”远程服务器还原为2</span><br><span class="line"></span><br><span class="line">//模块系统</span><br><span class="line">$ pm2 module：generate [name]     //生成名称为[name]的样本模块</span><br><span class="line">$ pm2 install pm2-logrotate       //安装模块（这里是一个日志轮换系统）</span><br><span class="line">$ pm2 uninstall pm2-logrotate     //卸载模块</span><br><span class="line">$ pm2 publish                     //增量版本，git push和npm发布</span><br></pre></td></tr></table></figure>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>一旦应用程序启动，您可以轻松地列出和管理它们：<br>列出所有运行的进程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 list</span><br></pre></td></tr></table></figure>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/pm2-list.png"></p><p></p>
+<p>管理您的流程非常简单：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 stop     &lt;app_name|id|<span class="string">'all'</span>|json_conf&gt;</span><br><span class="line">$ pm2 restart  &lt;app_name|id|<span class="string">'all'</span>|json_conf&gt;</span><br><span class="line">$ pm2 delete   &lt;app_name|id|<span class="string">'all'</span>|json_conf&gt;</span><br></pre></td></tr></table></figure>
+<p>为了确保它重新评估环境变量中声明的变量json_conf作为参数，并可选择您的自定义env名称（json_conf如果有的话）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 restart  &lt; json_conf &gt;  [--env  &lt; env_name &gt; ]</span><br></pre></td></tr></table></figure>
+<p>要获得有关特定进程的更多详细信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 describe  &lt; id | app_name &gt;</span><br></pre></td></tr></table></figure>
+<h3 id="负载平衡和零秒停机重新加载"><a href="#负载平衡和零秒停机重新加载" class="headerlink" title="负载平衡和零秒停机重新加载"></a>负载平衡和零秒停机重新加载</h3><p>当使用-i &lt;instance_number&gt;选项启动应用程序时，将启用集群模式。</p>
+<p>群集模式启动您的应用程序的&lt;instance_number&gt;实例，并在每个实例之间自动负载平衡HTTP / TCP / UDP。这可以根据可用的CPU数量来提高整体性能。</p>
+<p>所有主要的Node.js框架和任何Node.js应用程序都能和PM2无缝支持，并且无需更改任何代码：</p>
+<p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/cluster-support.png"></p><p><br>主要命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 start app.js -i max                //根据有效CPU数目启动最大进程数目</span><br><span class="line">$ pm2 reload all                         //零秒重新加载所有</span><br><span class="line">$ pm2 scale &lt;app_name&gt; &lt;instance_number&gt; //增加/减少进程号码</span><br></pre></td></tr></table></figure>
+<h3 id="CPU-内存监视"><a href="#CPU-内存监视" class="headerlink" title="CPU /内存监视"></a>CPU /内存监视</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/pm2-monit.png"></p><p></p>
+<p>监测所有已启动的程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 monit</span><br></pre></td></tr></table></figure>
+<h3 id="日志设施"><a href="#日志设施" class="headerlink" title="日志设施"></a>日志设施</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/pm2-logs.png"></p><p><br>实时显示指定进程或所有进程的日志。标准，原始，JSON和格式化输出可用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 logs [ <span class="string">' all '</span> | app_name | app_id] [--json] [--format] [--raw]</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 logs APP-NAME       //显示APP-NAME日志</span><br><span class="line">$ pm2 logs --json         //JSON输出</span><br><span class="line">$ pm2 logs --format       //格式输出</span><br><span class="line"></span><br><span class="line">$ pm2 flush               //刷新所有日志</span><br><span class="line">$ pm2 reloadLogs          //重新加载所有日志</span><br></pre></td></tr></table></figure>
+<h3 id="启动脚本生成"><a href="#启动脚本生成" class="headerlink" title="启动脚本生成"></a>启动脚本生成</h3><p>PM2可以生成并配置一个启动脚本，以便在每次服务器重新启动时保持PM2和您的进程活动。</p>
+<p>支持init系统，如：systemd（Ubuntu 16，CentOS，Arch），upstart（Ubuntu 14/12），launchd（MacOSx，Darwin），rc.d（FreeBSD）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//自动检测init系统+在服务器启动时生成并设置PM2启动</span><br><span class="line">$ pm2 startup</span><br><span class="line"></span><br><span class="line">//手动指定启动系统,可以是：systemd，upstart，launchd，rcd</span><br><span class="line">$ pm2 startup [platform]</span><br><span class="line"></span><br><span class="line">//在服务器启动时禁用并删除PM2引导</span><br><span class="line">$ pm2 unstartup</span><br></pre></td></tr></table></figure>
+<p>在重新启动时保存/冻结进程列表：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 save</span><br></pre></td></tr></table></figure>
+<h3 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h3><p>PM2嵌入一个简单而强大的模块系统。安装模块非常简单：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 install  &lt; module_name &gt;</span><br></pre></td></tr></table></figure>
+<p>以下是一些PM2兼容模块（由PM2管理的独立Node.js应用程序）：</p>
+<p>pm2-logrotate自动轮转PM2和应用程序管理的日志<br>pm2-webshell在浏览器中公开一个功能齐全的终端<br>pm2-server-monit监视你的服务器健康</p>
+<h3 id="Keymetrics监测"><a href="#Keymetrics监测" class="headerlink" title="Keymetrics监测"></a>Keymetrics监测</h3><p></p><p style="text-align:center;"><img src="http://ziyuan.qikepower.com/application-demo.png"></p><p></p>
+<p>如果您使用PM2管理您的NodeJS应用程序，则Keymetrics可以轻松监控和管理跨服务器的应用程序。随意尝试一下：</p>
+<p><a href="https://app.keymetrics.io/api/oauth/login" target="_blank" rel="noopener">发现PM2的监控仪表板</a></p>
+
+                </div>
+            </article>
+            
+                <div id="rewardBox">
+    <a href="javascript:;" class="reward-btn"><i class="fa fa-credit-card"></i>打赏支持</a>
+    <div id="reward-modal-container">
+        <div class="reward-modal-background">
+            <div class="reward-modal">
+                <p class="reward-quote">
+                    <i class="reward-quote-left"></i>
+                    <span class="reward-quote-word">如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!</span>
+                    <i class="reward-quote-right"></i>
+                </p>
+                <div class="reward-tab">
+                    <a href="javascript:;" class="reward-wechat active" data-index="0">微信</a>
+                    <a href="javascript:;" class="reward-alipay" data-index="1">支付宝</a>
+                    <img src="http://ziyuan.qikepower.com/wx.png" alt="wechat" class="reward-image active">
+                    <img src="http://ziyuan.qikepower.com/zfb.jpg" alt="alipay" class="reward-image">
+                </div>
+            </div>
+        </div>
+    </div></div>
+            
+            
+            
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    // gitalk的主要参数
+    clientID: "5b8d35f0aa2ff3fb215f",
+    clientSecret: "f2d66b4efccabb319e5c269a201ccfabafe61344",
+    repo: "zhaodongming.github.io",
+    owner: "zhaodongming",
+    admin: '645394545@qq.com',
+    id: "PM2"
+  });
+  gitalk.render('gitalk-container');
+</script>
+            
+        </div>
+        <aside>
+
+            <!--<div class="wxcode">
+    <img src="http://ziyuan.qikepower.com/qrcode_for_gh_dc857c884228_430.jpg" alt="">
+    <h6 class="text-center">扫码关注个人公众号</h6>
+</div>-->
+            <!--<div class="flinkBox">
+    <div class="fltitle">
+        <h2>友情链接</h2>
+    </div>
+    <div class="fl_list">
+        <ul>
+            
+                <li><a href="https://jdc.jd.com" target="_blank" title="京东设计中心">京东设计中心</a></li>
+            
+                <li><a href="http://dopro.io/" target="_blank" title="Deep Ocean">Deep Ocean</a></li>
+            
+                <li><a href="http://fex.baidu.com" target="_blank" title="百度Web前端研发部">百度Web前端研发部</a></li>
+            
+        </ul>
+    </div>
+</div>-->
+            <div id="navfixed" class="postNav">
+    <div class="fltitle">
+        <h2>文章目录</h2>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PM2介绍"><span class="toc-number">1.</span> <span class="toc-text">PM2介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装PM2"><span class="toc-number">2.</span> <span class="toc-text">安装PM2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动应用程序"><span class="toc-number">3.</span> <span class="toc-text">启动应用程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监视PM2和应用程序"><span class="toc-number">4.</span> <span class="toc-text">监视PM2和应用程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新PM2"><span class="toc-number">5.</span> <span class="toc-text">更新PM2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主要特点"><span class="toc-number">6.</span> <span class="toc-text">主要特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令概述"><span class="toc-number">6.1.</span> <span class="toc-text">命令概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程管理"><span class="toc-number">6.2.</span> <span class="toc-text">进程管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#负载平衡和零秒停机重新加载"><span class="toc-number">6.3.</span> <span class="toc-text">负载平衡和零秒停机重新加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU-内存监视"><span class="toc-number">6.4.</span> <span class="toc-text">CPU /内存监视</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日志设施"><span class="toc-number">6.5.</span> <span class="toc-text">日志设施</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动脚本生成"><span class="toc-number">6.6.</span> <span class="toc-text">启动脚本生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块系统"><span class="toc-number">6.7.</span> <span class="toc-text">模块系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Keymetrics监测"><span class="toc-number">6.8.</span> <span class="toc-text">Keymetrics监测</span></a></li></ol></li></ol>
+</div>
+        </aside>
+
+    </div>
+</section>
+<div class="backtop" id="backTop" style="display: block;">
+    <i class="fa fa-long-arrow-up"></i>
+</div>
+</main>
+<footer id="footer">
+    <div class="container">
+        <p> 由
+            <a href="http://hexo.io/" target="_blank">Hexo</a>
+            和
+            <a href="https://github.com/zhaodongming/hexo-theme-baozi" target="_blank">Hexo-theme-baozi</a> 提供支持
+        </p>
+        <p id="copyRightEn">版权所有 © 2013 - 2019 明 All Rights Reserved.</p>
+        <p class="busuanzi_uv">
+            访客数 : <span id="busuanzi_value_site_uv"></span> |
+            访问量 : <span id="busuanzi_value_site_pv"></span>
+        </p>
+    </div>
+</footer>
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/busuanzi.pure.mini.js"></script>
+</body>
+</html>
