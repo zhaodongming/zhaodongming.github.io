@@ -42,6 +42,9 @@ h3{
     padding-left: 0px;
     padding-right: 0px;
 }
+.header{
+    border-bottom: 1px solid #eee;
+}
 .navbar{
     padding: 0px;
     height: 60px;
@@ -50,7 +53,8 @@ h3{
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     z-index: 100;
-    border-bottom: 1px solid #eee;
+    position: static;
+
 }
 .navbar .navbar-collapse{
     float: left;
@@ -656,6 +660,11 @@ pre .keyword, pre .javascript .function {
 .article-tag a{
     margin:0px 2px;
 }
+.navbar-collapse.collapse.in{
+    display: block;
+    padding: 15px;
+}
+
 @media (min-width: 1600px){
     .container {
         max-width: 1490px;
@@ -726,5 +735,31 @@ pre .keyword, pre .javascript .function {
     }
     #gitalk-container{
         padding: 0px 20px;
+    }
+    .navbar-collapse{
+        position: absolute;
+        top: 61px;
+        left: 0;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 99;
+        height: 0;
+        overflow: hidden;
+        background-color: #fff;
+        /*-webkit-transition: height .2s;*/
+        /*-moz-transition: height .2s;*/
+        /*-o-transition: height .2s;*/
+        /*-ms-transition: height .2s;*/
+        /*transition: height .2s;*/
+        height: 210px;
+        border-bottom: 1px solid #eee;
+    }
+    .navbar-collapse.in li {
+        margin: 0 0 15px;
+        float: none;
+        height: 30px;
+        line-height: 30px;
     }
 }
